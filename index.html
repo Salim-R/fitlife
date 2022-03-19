@@ -8,17 +8,18 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 	<link rel="shortcut icon" type="image/png" href="favicon.jpg">
 
-	<link rel="stylesheet" type="text/css" href="./p4/css/bootstrap.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./p4/style.css">
-	<link rel="stylesheet" type="text/css" href="./p4/css/font-awesome.css">
-	<link rel="stylesheet" type="text/css" href="./p4/css/et-line.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="preload" type="text/css" href="./p4/css/et-line.css">
+	<link rel="preload" as="image" href="./p4/img/bureau2.webp">
 
-
-	<script src="./p4/js/jquery-2.1.0.js" defer></script>
-	<script src="./p4/js/bootstrap.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js" defer></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" defer></script>
 	<script src="./p4/js/blocs.js" defer></script>
-	<script src="./p4/js/jquery.touchSwipe.js" defer></script>
-	<script src="./p4/js/gmaps.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"
+		defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.min.js" defer></script>
 
 	<title>La Panthère</title>
 
@@ -31,7 +32,7 @@
 
 <body>
 	<!-- Principal conteneur -->
-	<main class="page-container">
+	<div class="page-container">
 
 		<!-- bloc-0 -->
 		<header>
@@ -40,9 +41,8 @@
 
 					<nav class="navbar row">
 						<div class="navbar-header">
-							<a class="navbar-brand" href="index.html"><img
-									src="./p4/img/agence-la-panthere-monochrome.webp" alt="Titre agence la panthère"
-									height="40" /></a>
+							<a class="navbar-brand" href="index.html"><img src="./p4/img/agence-la-panthere.webp"
+									alt="Titre agence la panthère" height="40" /></a>
 							<button id="nav-toggle" type="button" class="ui-navbar-toggle navbar-toggle"
 								data-toggle="collapse" data-target=".navbar-1">
 								<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
@@ -69,6 +69,7 @@
 			<!-- bloc-1-presentation -->
 			<div class="bloc bgc-dark-slate-blue bg-banniere d-bloc bg-t-edge bloc-bg-texture texture-paper b-parallax"
 				id="bloc-1-hero">
+
 				<div class="container bloc-lg">
 					<div class="row tight-width-whitespace">
 						<div class="col-sm-12">
@@ -280,34 +281,37 @@
 						<div class="row row-no-gutters social">
 							<div class="col-sm-3">
 								<div class="text-center">
-									<a class="social" href="index.html"><span class="fa fa-twitter icon-md"></span></a>
+									<a class="social" href="/" aria-label="Acceder a Twitter"><span
+											class="fa fa-twitter icon-md"></span> </a>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="text-center">
-									<a class="social" href="index.html"><span class="fa fa-facebook icon-md"></span></a>
+									<a class="social" href="/" aria-label="Acceder a Facebook"><span
+											class="fa fa-facebook icon-md"></span></a>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="text-center">
-									<a class="social" href="index.html"><span class="fa fa-dribbble icon-md"></span></a>
+									<a class="social" href="/" aria-label="Acceder a Dribble"><span
+											class="fa fa-dribbble icon-md"></span></a>
 								</div>
 							</div>
 							<div class="col-sm-3">
 								<div class="text-center">
-									<a class="social" href="index.html"><span
+									<a class="social" href="/" aria-label="Acceder a Instagram"><span
 											class="fa fa-instagram icon-md"></span></a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+			</div>
 		</footer>
 		<!-- Footer - bloc-8 END -->
 
-		</div>
-		<!-- Principal conteneur END -->
-
+	</div>
+	<!-- Principal conteneur END -->
 
 </body>
 
