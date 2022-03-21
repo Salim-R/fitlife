@@ -539,10 +539,10 @@ cite {
 }
 
 .bgc-atomic-tangerine {
-    background-color: #af6339;
+    background-color: #AE4820;
 }
  form .btn{
-    background-color: #af6339;
+    background-color: #AE4820;
     width: 100%;
 }
 .form-group{
@@ -553,7 +553,7 @@ cite {
     font-size: 21px;
 }
 .btn-atomic-tangerine {
-    background: #af6339;
+    background: #AE4820;
     color: #fff !important;
 }
 .btn-atomic-tangerine:hover {
@@ -801,5 +801,11 @@ cite {
         display: flex;
         align-content: center;
         justify-content: space-between;
+    }
+    .white,p,.mg-md{
+        font-size: 18px;
+    }
+    h2{
+        font-size: 20px!important;
     }
 }
