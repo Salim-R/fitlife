@@ -1,246 +1,454 @@
-<!doctype html>
-<html lang=fr>
-
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-	<meta charset=utf-8>
-	<meta name=description
-		content="Votre entreprise de web design à lyon - La panthére vous apporte son expertise en web design">
-	<meta name=viewport content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-	<link rel="shortcut icon" type="image/png" href="./p4/img/favicon.webp">
-	<link rel=preload as="style" href=./p4/style.css media=all>
-	<link rel=preload as="style" href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css media=all>
-	<link rel=stylesheet href=https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css media=all>
-	<link rel=stylesheet href=./p4/style.css media=all>
-	<link rel=stylesheet href=./p4/css/font-awesome.css media=all>
-	<link rel=stylesheet href=./p4/css/et-line.css media=all>
-	<link rel="preload" as="image" href="./p4/img/bureau2.webp" media="all">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife Coaching - Votre partenaire fitness à Lyon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #50c878;
+            --background-color: #f8f9fa;
+            --text-color: #333;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
 
-	<title>La Panthère</title>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-	<!-- Analytics -->
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-	<!-- Analytics END -->
+        header {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
 
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #vanta-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .hero-content {
+            z-index: 1;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 2px solid transparent;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            background-color: white;
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .services {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            color: var(--primary-color);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--shadow-color);
+        }
+
+        .service-card img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .service-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .testimonials {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .testimonials::before,
+        .testimonials::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100px;
+            background-color: white;
+        }
+
+        .testimonials::before {
+            top: 0;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0);
+        }
+
+        .testimonials::after {
+            bottom: 0;
+            clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .testimonial-card .author {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        footer {
+            background-color: var(--background-color);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .social-links {
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 15px;
+            color: var(--primary-color);
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px) scale(1.1);
+            color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-	<div class=page-container>
-		<header>
-			<div class="bloc bgc-white l-bloc" id=bloc-0>
-				<div class="container bloc-sm">
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">FitLife</div>
+                <ul class="nav-links">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#temoignages">Témoignages</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-					<nav class="navbar row">
-						<div class=navbar-header>
-							<a class=navbar-brand href=index.html><img id=img-panthere
-									src=./p4/img/agence-la-panthere.webp alt="Titre agence la panthère" />
-							</a>
-							<button id="nav-toggle" type="button" class="ui-navbar-toggle navbar-toggle"
-								data-toggle="collapse" data-target=".navbar-1">
-								<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
-									class="icon-bar"></span><span class="icon-bar"></span>
-							</button>
+    <main>
+        <section id="accueil" class="hero">
+            <div id="vanta-canvas"></div>
+            <div class="hero-content">
+                <h1>Transformez votre vie avec FitLife Coaching</h1>
+                <p>Votre partenaire fitness personnel à Lyon pour atteindre vos objectifs de santé et de bien-être</p>
+                <a href="#contact" class="btn">Commencez votre voyage</a>
+            </div>
+        </section>
 
-						</div>
-						<div class="collapse navbar-collapse navbar-1 special-dropdown-nav">
-							<ul class="site-navigation nav navbar-nav">
-								<li><a href=index.html>Accueil</a></li>
-								<li></li>
-								<li><a href=./p4/contact.html>Contact</a></li>
-							</ul>
-						</div>
-					</nav>
-				</div>
-			</div>
-			<!-- bloc-0 END -->
+        <section id="services" class="services">
+            <div class="container">
+                <h2>Nos Services</h2>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <img src="https://picsum.photos/200/200?random=1" alt="Entraînement personnel">
+                        <h3>Entraînement personnel</h3>
+                        <p>Des séances sur mesure pour atteindre vos objectifs spécifiques</p>
+                    </div>
+                    <div class="service-card">
+                        <img src="https://picsum.photos/200/200?random=2" alt="Nutrition">
+                        <h3>Conseils en nutrition</h3>
+                        <p>Des plans alimentaires adaptés à votre mode de vie et vos objectifs</p>
+                    </div>
+                    <div class="service-card">
+                        <img src="https://picsum.photos/200/200?random=3" alt="Cours collectifs">
+                        <h3>Cours collectifs</h3>
+                        <p>Rejoignez nos séances de groupe motivantes et dynamiques</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-			<!-- bloc-1-presentation -->
-			<div class="bloc bgc-dark-slate-blue bg-banniere d-bloc bg-t-edge bloc-bg-texture texture-paper b-parallax"
-				id=bloc-1-hero>
-				<div class="container bloc-lg">
-					<div class="row tight-width-whitespace">
-						<div class=col-sm-12><img src=./p4/img/logo.webp class="center-block image-resize-mode"
-								width=100 alt="Agence La Panthère, agence web paris, création logo paris" />
-							<h1 class="text-center hero-bloc-text tc-white">Agence La Panthère</h1>
-							<div class=text-center><a href="p4/contact.html"
-									class="btn btn-lg btn-clean btn-rd cta-hero btn-atomic-tangerine"
-									id=cta-hero>Contact</a></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</header>
-		<!-- bloc-1-presentation END -->
+        <section id="temoignages" class="testimonials">
+            <div class="container">
+                <h2>Ce que disent nos clients</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <p>"Grâce à FitLife Coaching, j'ai complètement transformé mon corps et ma santé. Je me sens plus énergique que jamais !"</p>
+                        <div class="author">- Marie D.</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"Les coachs de FitLife sont incroyables. Leur soutien et leur expertise m'ont aidé à dépasser mes limites."</p>
+                        <div class="author">- Thomas L.</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p>"J'adore les cours collectifs ! L'ambiance est géniale et les résultats sont au rendez-vous."</p>
+                        <div class="author">- Sophie M.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-		<!-- bloc-2-services -->
-		<main>
-			<div class="bloc bgc-white l-bloc" id=bloc-2-services>
-				<div class="container bloc-md">
-					<div class=row>
-						<div class="col-sm-12 text-center">
-							<p class=resume>L'agence de la Panthère est une agence de web design qui aide
-								les entreprise à devenir attractives et visible sur internet</p>
-						</div>
-					</div>
-					<div class="row voffset-lg med-width-whitespace">
-						<article class=col-sm-4>
-							<div class=text-center><span
-									class="et-icon-browser sm-shadow icon-dark-slate-blue icons icon-lg"></span></div>
-							<h2 class="mg-md text-center">Web design</h2>
-							<p class=text-center>Que vous ayez un site web qui a besoin d&rsquo;un rafraîchissement
-								ou que vous partiez de zéro, laissez-nous vous réaliser un design dont vous serez fier.
-							</p>
-						</article>
-						<article class=col-sm-4>
-							<div class=text-center><span
-									class="et-icon-presentation sm-shadow icon-dark-slate-blue icons icon-lg"></span>
-							</div>
-							<h2 class="mg-md text-center">&nbsp;Stratégie</h2>
-							<p class=text-center>Plutôt que de suggérer des designs à la mode, nous travaillerons
-								avec vous pourcomprendrevos objectifs commerciaux afin de vous proposer le meilleur
-								design possible.<br></p>
-						</article>
-						<article class=col-sm-4>
-							<div class=text-center><span
-									class="et-icon-edit sm-shadow icon-dark-slate-blue icons icon-lg"></span></div>
-							<h2 class="mg-md text-center">Illustrations</h2>
-							<p class=text-center>Un bon design n'est rien sans de bonnes illustrations. Laissez faire
-								notre équipe degraphistes talentueux pour donner à vos pages une touche finale
-								d'élégance.</p>
-						</article>
-					</div>
-					<div class="row voffset-lg voffset">
-						<div class="col-xs-12 col-md-8 col-md-offset-2 text-center"><q class=quote>"L'agence La
-								Panthère est une excellente agence web ! Les web designers ontréussi àcapturer l'essence
-								de notre entreprise et à l'intégrer à notre site. Cela nous aaidé à doubler nos ventes
-								en ligne à Lyon."<br><cite>Maxime Guibard, PDG de À vos fourchettes</cite></q></div>
-					</div>
-				</div>
-			</div>
-			<!-- bloc-2-services END -->
+    <footer id="contact">
+        <div class="container">
+            <h2>Contactez-nous</h2>
+            <p>Email : info@fitlifecoaching.fr</p>
+            <p>Téléphone : 04 72 00 00 00</p>
+            <p>Adresse : 123 Rue du Fitness, 69000 Lyon</p>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
 
-			<!-- bloc-3-what-i-do -->
-			<div class="bloc tc-white bgc-atomic-tangerine bg-presentation d-bloc bloc-bg-texture texture-paper b-parallax"
-				id="bloc-3-what-i-do">
-				<div class="container bloc-lg">
-					<div class="row tight-width-whitespace black-background">
-						<div class=col-sm-12>
-							<p class="mg-md text-center tc-white">Nous souhaitons aider les entreprises de la région
-								Lyonnaise à se développer et àconnaîtrelesuccès. Nous travaillons pour aider les
-								entreprises locales à attirer de nouveauxclients.<br></p>
-							<p class="text-center white">Nous aimons collaborer avec des entrepreneurs créatifs et des
-								entreprises locale,qu’elles aient besoin de créer un site de A à Z ou de donner un coup
-								de jeune à leur site. Que vous ayez besoin d’une identité visuelle complète ou d’une
-								refonte de votre site, n’hésitez pas à nous contacter. Nous travaillerons ensemble pour
-								créer des sites beau et bien structurés,qui seront facilement trouvable sur les moteurs
-								de recherche. <br><br>
-								<a class="ltc-white bold-link" href="p4/contact.html">Contactez notre équipe</a><br>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="bloc bgc-white bg-lines-h2-bg bg-repeat l-bloc" id=bloc-4-portfolio>
-				<div class="container bloc-lg">
-					<div class=row>
-						<div class="col-sm-12 text-center">
-							<p class=resume>Nous travaillons avec beaucoup de clients, <br> voici nos
-								réalisations.
-						</div>
-					</div>
-					<div class="row tight-width-whitespace portfolio-row">
-						<article class=col-sm-6><a href=# data-lightbox=./p4/img/magazine.webp data-gallery-id=gallery-1
-								data-caption="Refonte d'un site web pour un journal local" data-frame=snapshot-lb>
-								<img src="./p4/img/magazine.webp"
-									alt="paris web design logo agence web meilleure agence et refonte site web journal"
-									class="img-responsive portfolio-thumb" />
-							</a>
-							<h3 class="mg-md text-center">Refonte d'un site web pour un journal local</h3>
-							<p class=text-center>Nous avons créé une nouvelle identité visuelle pour un journal
-								lyonnais.</p>
-						</article>
-						<article class=col-sm-6><a href=# data-lightbox=./p4/img/photographe.webp
-								data-gallery-id=gallery-1 data-caption="Création d'un site web pour photographes"
-								data-frame=snapshot-lb>
-								<img src="./p4/img/photographe.webp" class="img-responsive portfolio-thumb"
-									alt="paris web design logo agence web meilleure agence, Création d'un site web pour photographes" />
-							</a>
-							<h3 class="mg-md text-center">Création d'un site web pour photographes</h3>
-							<p class=text-center>Nous avons conçu la plateforme idéale pour laisser place aux
-								clichés des photographes.</p>
-						</article>
-					</div>
-					<div class="row tight-width-whitespace portfolio-row">
-						<article class=col-sm-6><a href=# data-lightbox=./p4/img/materiel.webp
-								data-gallery-id=" gallery-1" data-caption="Création d'un site internet pour un voyageur"
-								data-frame=snapshot-lb><img src=./p4/img/materiel.webp
-									class="img-responsive portfolio-thumb"
-									alt="paris web design logo agence web meilleure agence, Création d'un site web pour voyageur" /></a>
-							<h3 class="mg-md text-center">Création d'un site internet pour un voyageur</h3>
-							<p class=text-center>Nous avons élaboré un site internet et des illustrations pour
-								sublimer les vidéos et lesarticles de ce voyageur.</p>
-						</article>
-						<article class=col-sm-6><a href=# data-lightbox=./p4/img/bureau.webp data-gallery-id=gallery-1
-								data-caption="Conception d'un site pour une agence de mariage"
-								data-frame=snapshot-lb><img src=./p4/img/bureau.webp
-									class="img-responsive portfolio-thumb"
-									alt="paris web design logo agence web meilleure agence, Création d'un site web pour agence de mariage" /></a>
-							<h3 class="mg-md text-center">Conception d'un site pour une agence de mariage</h3>
-							<p class=text-center>Nous avons travaillé avec cette agence pour créer un site
-								internet permettant laprésentation détaillée de leurs prestations.</p>
-						</article>
-					</div>
-				</div>
-
-				<section class="bloc bgc-dark-slate-blue bg-banniere d-bloc bloc-bg-texture texture-paper"
-					id=bloc-5-cta>
-					<div class="container bloc-lg">
-						<div class=row>
-							<h2 class="mg-md text-center tc-white">Prêt pour redonner vie à votre projet ?<br>Contactez
-								notre équipe !</h2>
-							<div class="col-sm-12 text-center"><a href="p4/contact.html"
-									class="btn btn-atomic-tangerine btn-clean btn-rd btn-lg cta-hero">Contact</a></div>
-						</div>
-					</div>
-				</section>
-			</div> <!-- bloc-5-cta END -->
-
-		</main>
-		<footer class="bloc bgc-atomic-tangerine d-bloc" id=bloc-8>
-			<div class="container bloc-sm">
-				<div class=row>
-					<div class=col-sm-12>
-						<p class="text-center white">Agence La Panthère - Agence web basée à Lyon.<br></p>
-						<div class="row row-no-gutters social">
-							<div class=col-sm-3>
-								<div class=text-center><a class=social href=/ aria-label="Acceder a Twitter">
-										<span class="fa fa-twitter icon-md"></span>
-									</a></div>
-							</div>
-							<div class=col-sm-3>
-								<div class=text-center><a class=social href=/ aria-label="Acceder a Facebook">
-										<span class="fa fa-facebook icon-md"></span>
-									</a></div>
-							</div>
-							<div class=col-sm-3>
-								<div class=text-center><a class=social href=/ aria-label="Acceder a Dribble">
-										<span class="fa fa-dribbble icon-md"></span>
-									</a></div>
-							</div>
-							<div class=col-sm-3>
-								<div class=text-center><a class=social href=/ aria-label="Acceder a Instagram">
-										<span class="fa fa-instagram icon-md"></span>
-									</a></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
-
-	</div>
-	<script defer src="./p4/js/jquery-2.1.0.js"></script>
-	<script defer src="./p4/js/bootstrap.js"></script>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <script>
+		// Initialize VANTA.js background with discreet birds and professional colors
+		let vantaEffect = VANTA.BIRDS({
+			el: "#vanta-canvas",
+			mouseControls: true,
+			touchControls: true,
+			gyroControls: false,
+			minHeight: 200.00,
+			minWidth: 200.00,
+			scale: 1.00,
+			scaleMobile: 1.00,
+			backgroundColor: 0x4272e0, // Dark background for a modern look
+			color: 0xffffff, // Professional blue // Lighter blue for contrast
+			birdSize: 0.40, // Smaller birds for a more discreet effect
+			speedLimit: 2.00, // Slower speed for a calmer animation
+			separation: 30.00,
+			alignment: 30.00,
+			cohesion: 30.00
+		});
+	
+		// GSAP animations
+		gsap.registerPlugin(ScrollTrigger);
+	
+		gsap.from(".hero-content", {
+			opacity: 0,
+			y: 50,
+			duration: 1.2,
+			delay: 0.5,
+			ease: "power3.out"
+		});
+	
+		gsap.from(".service-card", {
+			opacity: 0,
+			y: 50,
+			duration: 1,
+			stagger: 0.3,
+			ease: "power3.out",
+			scrollTrigger: {
+				trigger: ".services",
+				start: "top 80%"
+			}
+		});
+	
+		gsap.from(".testimonial-card", {
+			opacity: 0,
+			x: -50,
+			duration: 1,
+			stagger: 0.3,
+			ease: "power3.out",
+			scrollTrigger: {
+				trigger: ".testimonials",
+				start: "top 80%"
+			}
+		});
+	
+		// Shrink header on scroll
+		window.addEventListener('scroll', () => {
+			const header = document.querySelector('header');
+			if (window.scrollY > 100) {
+				header.style.padding = '10px 0';
+				header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+			} else {
+				header.style.padding = '20px 0';
+				header.style.boxShadow = 'none';
+			}
+		});
+	</script>
+	
 </body>
-
 </html>
