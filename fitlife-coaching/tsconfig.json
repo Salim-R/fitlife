@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
+    "target": "ES2017", 
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -21,7 +21,8 @@
     "paths": {
       "@/*": ["./*"]
     },
-    "typeRoots": ["./node_modules/@types", "path/to/your/types/folder"]
+    "typeRoots": ["./node_modules/@types"],
+    "types": ["json5", "prop-types", "react", "react-dom"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "path/to/your/types/folder/**/*.d.ts"],
   "exclude": ["node_modules"]
