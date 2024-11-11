@@ -15,7 +15,16 @@ export function Hero() {
         priority
         className="absolute inset-0 z-0"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/30 z-10"></div>
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .custom-small-screen-bg {
+            background-image: url('/images/small-background.svg');
+            background-size: cover;
+            background-position: center;
+          }
+        }
+      `}</style>
+      <div className="absolute inset-0 custom-small-screen-bg z-0"></div>
       <div className="container relative z-20 mx-auto flex flex-col items-center justify-center min-h-screen text-center px-4">
         <motion.h1 
           className="max-w-4xl text-5xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl font-poppins"
