@@ -49,8 +49,10 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <Button size="lg" className="text-lg group transition-all duration-300 ease-in-out transform hover:scale-105 bg-primary text-white hover:bg-primary-dark">
-            Commencez votre voyage
-            <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+            <a href="#contact" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              Commencez votre voyage
+              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </a>
           </Button>
           <Button size="lg" variant="outline" className="text-lg text-white border-white hover:bg-white hover:text-primary transition-all duration-300 ease-in-out transform hover:scale-105">
             En savoir plus
