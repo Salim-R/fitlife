@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/text-area"
+import { TextArea } from "@/components/ui/text-area"
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { Send, Check, Loader2 } from "lucide-react"
@@ -78,7 +78,7 @@ export function ContactForm() {
               <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
                 Message
               </label>
-              <Textarea 
+              <TextArea 
                 id="message" 
                 name="message" 
                 required 

@@ -44,10 +44,10 @@ export function Results() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold tracking-tight text-orange-600 sm:text-5xl md:text-6xl mb-4">
-            Nos résultats parlent d'eux-mêmes
+            Nos résultats parlent d&apos;eux-mêmes
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Découvrez l'impact de notre approche sur la vie de nos clients et la qualité de nos services.
+            Découvrez l&apos;impact de notre approche sur la vie de nos clients et la qualité de nos services.
           </p>
         </motion.div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
