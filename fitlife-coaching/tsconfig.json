@@ -19,10 +19,11 @@
       }
     ],
     "paths": {
+      
       "@/*": ["./*"]
     },
     "typeRoots": ["./node_modules/@types"],
-    "types": ["json5", "prop-types", "react", "react-dom"]
+    "types": [ "prop-types", "react", "react-dom"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "path/to/your/types/folder/**/*.d.ts"],
   "exclude": ["node_modules"]
