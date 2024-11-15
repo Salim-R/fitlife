@@ -32,7 +32,7 @@ export function Header() {
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/60 backdrop-blur" : "bg-white"
+        isScrolled ? "bg-white/60 backdrop-blur text-gray-800" : "bg-white text-gray-800"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
