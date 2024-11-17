@@ -9,22 +9,41 @@ import { Send, Check, Loader2 } from "lucide-react"
 import confetti from 'canvas-confetti'
 
 export function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const validateForm = () => {
+    const newErrors: { [key: string]: string } = {};
+    if (!formData.name) newErrors.name = 'Le nom est requis.';
+    if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Une adresse e-mail valide est requise.';
+    if (!formData.message) newErrors.message = 'Le message est requis.';
+    return newErrors;
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 }
-    })
-  }
+    e.preventDefault();
+    const newErrors = validateForm();
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      setIsSubmitting(true);
+      // Simulate form submission
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      });
+    }
+  };
 
   return (
     <section id="contact" className="bg-gradient-to-b from-orange-100 to-white py-24">
@@ -59,8 +78,11 @@ export function ContactForm() {
                 id="name" 
                 name="name" 
                 required 
-                className="w-full transition-all duration-300 focus:ring-2 focus:ring-orange-500 border-gray-300" 
+                className={`w-full transition-all duration-300 focus:ring-2 focus:ring-orange-500 border-gray-600 ${errors.name ? 'border-red-500' : ''}`}
+                onChange={handleInputChange}
+                value={formData.name}
               />
+              {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
             </div>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
@@ -71,8 +93,11 @@ export function ContactForm() {
                 name="email" 
                 type="email" 
                 required 
-                className="w-full transition-all duration-300 focus:ring-2 focus:ring-orange-500 border-gray-300" 
+                className={`w-full transition-all duration-300 focus:ring-2 focus:ring-orange-500 border-gray-600 ${errors.email ? 'border-red-500' : ''}`}
+                onChange={handleInputChange}
+                value={formData.email}
               />
+              {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
             </div>
             <div>
               <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
@@ -82,8 +107,11 @@ export function ContactForm() {
                 id="message" 
                 name="message" 
                 required 
-                className="w-full h-32 resize-none transition-all duration-300 focus:ring-2 focus:ring-orange-500 border-gray-300" 
+                className={`w-full h-32 resize-none transition-all duration-300 focus:ring-2 focus:ring-orange-500 ${errors.message ? 'border-red-500' : 'border border-gray-600'}`}
+                onChange={handleInputChange}
+                value={formData.message}
               />
+              {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
             </div>
             <Button
               type="submit"

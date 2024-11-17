@@ -5,7 +5,7 @@ import Link from "next/link"
 import { Button } from "./ui/button"
 import { Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ThemeProvider} from "./theme-provider"    
+import { ThemeProvider } from "./theme-provider"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -23,10 +23,12 @@ export function Header() {
   }, [])
 
   const menuItems = [
-    { href: "#services", label: "Services" },
-    { href: "#testimonials", label: "Témoignages" },
+    { href: "#our-team", label: "Notre Équipe" },
     { href: "#results", label: "Résultats" },
+    { href: "#faq", label: "FAQ" },
     { href: "#contact", label: "Contact" },
+    { href: "#services", label: "Services" },
+    { href: "#testimonials", label: "Témoignages" }
   ]
 
   return (
@@ -54,19 +56,13 @@ export function Header() {
               </Link>
             ))}
           </nav>
-          <div className="flex items-center space-x-4">
-            <ThemeProvider />
-            <Button size="lg" className="hidden md:inline-flex" asChild>
-              <Link href="#contact">Commencer</Link>
-            </Button>
-            <button
-              className="md:hidden focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
-              onClick={toggleMenu}
-              aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          </div>
+          <button
+            className="md:hidden focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            onClick={toggleMenu}
+            aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
       </div>
       <AnimatePresence>
@@ -89,9 +85,6 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
-              <Button size="lg" className="w-full" asChild>
-                <Link href="#contact" onClick={() => setIsMenuOpen(false)}>Commencer</Link>
-              </Button>
             </div>
           </motion.div>
         )}
