@@ -1,9 +1,3 @@
-import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-  } from "@/components/ui/accordion"
 import { useState } from "react";
   
 export function FAQ() {

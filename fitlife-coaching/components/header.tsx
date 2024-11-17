@@ -2,10 +2,8 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Button } from "./ui/button"
 import { Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { ThemeProvider } from "./theme-provider"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
