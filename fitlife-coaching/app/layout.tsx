@@ -6,8 +6,18 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { Analytics } from '@vercel/analytics/react'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-const poppins = Poppins({ weight: ['400', '600', '700'], subsets: ['latin'], variable: '--font-poppins' })
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  preload: true,
+})
+
+const poppins = Poppins({
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-poppins',
+  preload: true,
+})
 
 export const metadata: Metadata = {
   title: 'FitLife Coaching - Votre partenaire fitness à Lyon',
