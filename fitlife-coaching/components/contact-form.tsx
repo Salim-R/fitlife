@@ -8,8 +8,8 @@ import { Send, Check, Loader2 } from 'lucide-react';
 import { LazyMotion, loadFeatures, m } from '@/components/motion';
 
 export function ContactForm() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '', website: '' }); // website = honeypot
-  const [errors, setErrors] = useState<{ [k: string]: string }>({});
+  const [formData, setFormData] = useState({ name: '', email: '', message: '', website: '' }); // honeypot
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const liveRef = useRef<HTMLParagraphElement>(null);
@@ -21,29 +21,31 @@ export function ContactForm() {
   const validate = () => {
     const e: Record<string, string> = {};
     if (!formData.name.trim()) e.name = 'Le nom est requis.';
-    if (!/\S+@\S+\.\S+/.test(formData.email)) e.email = 'Une adresse e-mail valide est requise.';
+    if (!/^\S+@\S+\.\S+$/.test(formData.email)) e.email = 'Une adresse e-mail valide est requise.';
     if (!formData.message.trim()) e.message = 'Le message est requis.';
+    if (formData.message.length > 2000) e.message = '2000 caractères max.';
     return e;
   };
 
   const handleSubmit = async (ev: React.FormEvent<HTMLFormElement>) => {
     ev.preventDefault();
+    if (isSubmitting || isSubmitted) return;
+
     const e = validate();
     setErrors(e);
     if (Object.keys(e).length) return;
 
-    // anti-bot classique
+    // anti-bot
     if (formData.website) return;
 
     setIsSubmitting(true);
 
-    // TODO: appelle ici ta Server Action (Resend) quand tu veux passer en prod
+    // TODO: remplace par un appel Server Action /api/contact avec rate-limit
     await new Promise(r => setTimeout(r, 800));
 
     setIsSubmitting(false);
     setIsSubmitted(true);
 
-    // confetti en lazy import pour ne pas gonfler le bundle initial
     const { default: confetti } = await import('canvas-confetti');
     confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
 
@@ -61,7 +63,9 @@ export function ContactForm() {
             transition={{ duration: 0.5 }}
             className="mb-12 text-center"
           >
-            <h2 className="mb-4 text-4xl font-bold tracking-tight text-orange-600 sm:text-5xl md:text-6xl">Contactez-nous</h2>
+            <h2 className="mb-4 text-4xl font-bold tracking-tight text-orange-600 sm:text-5xl md:text-6xl">
+              Contactez-nous
+            </h2>
             <p className="mx-auto max-w-2xl text-xl text-gray-600">
               Prêt à transformer votre vie ? Laissez-nous un message et commencez votre voyage.
             </p>
@@ -79,9 +83,7 @@ export function ContactForm() {
               <input type="text" name="website" tabIndex={-1} autoComplete="off" className="hidden" onChange={onChange} />
 
               <div>
-                <label htmlFor="name" className="mb-1 block text-sm font-medium text-gray-700">
-                  Nom
-                </label>
+                <label htmlFor="name" className="mb-1 block text-sm font-medium text-gray-700">Nom</label>
                 <Input
                   id="name"
                   name="name"
@@ -90,19 +92,15 @@ export function ContactForm() {
                   value={formData.name}
                   aria-invalid={!!errors.name}
                   aria-describedby={errors.name ? 'name-error' : undefined}
+                  autoComplete="name"
+                  maxLength={120}
                   className={`w-full border-gray-600 transition-all duration-300 focus:ring-2 focus:ring-orange-500 ${errors.name ? 'border-red-500' : ''}`}
                 />
-                {errors.name && (
-                  <p id="name-error" className="mt-1 text-sm text-red-500">
-                    {errors.name}
-                  </p>
-                )}
+                {errors.name && <p id="name-error" className="mt-1 text-sm text-red-500">{errors.name}</p>}
               </div>
 
               <div>
-                <label htmlFor="email" className="mb-1 block text-sm font-medium text-gray-700">
-                  Email
-                </label>
+                <label htmlFor="email" className="mb-1 block text-sm font-medium text-gray-700">Email</label>
                 <Input
                   id="email"
                   name="email"
@@ -112,19 +110,16 @@ export function ContactForm() {
                   value={formData.email}
                   aria-invalid={!!errors.email}
                   aria-describedby={errors.email ? 'email-error' : undefined}
+                  autoComplete="email"
+                  inputMode="email"
+                  maxLength={254}
                   className={`w-full border-gray-600 transition-all duration-300 focus:ring-2 focus:ring-orange-500 ${errors.email ? 'border-red-500' : ''}`}
                 />
-                {errors.email && (
-                  <p id="email-error" className="mt-1 text-sm text-red-500">
-                    {errors.email}
-                  </p>
-                )}
+                {errors.email && <p id="email-error" className="mt-1 text-sm text-red-500">{errors.email}</p>}
               </div>
 
               <div>
-                <label htmlFor="message" className="mb-1 block text-sm font-medium text-gray-700">
-                  Message
-                </label>
+                <label htmlFor="message" className="mb-1 block text-sm font-medium text-gray-700">Message</label>
                 <TextArea
                   id="message"
                   name="message"
@@ -134,20 +129,17 @@ export function ContactForm() {
                   value={formData.message}
                   aria-invalid={!!errors.message}
                   aria-describedby={errors.message ? 'message-error' : undefined}
+                  maxLength={2000}
                   className={`h-32 w-full resize-none transition-all duration-300 focus:ring-2 focus:ring-orange-500 ${
                     errors.message ? 'border-red-500' : 'border border-gray-600'
                   }`}
                 />
-                {errors.message && (
-                  <p id="message-error" className="mt-1 text-sm text-red-500">
-                    {errors.message}
-                  </p>
-                )}
+                {errors.message && <p id="message-error" className="mt-1 text-sm text-red-500">{errors.message}</p>}
               </div>
 
               <Button
                 type="submit"
-                className="w-full transform bg-orange-500 text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-orange-600 hover:shadow-lg"
+                className="w-full transform bg-orange-500 text-white transition-all duration-300 ease-in-out hover:scale-105 hover:bg-orange-600 hover:shadow-lg disabled:cursor-not-allowed"
                 disabled={isSubmitting || isSubmitted}
               >
                 {isSubmitting ? (
@@ -168,7 +160,7 @@ export function ContactForm() {
                 )}
               </Button>
 
-              {/* zone live pour lecteur d’écran */}
+              {/* live region */}
               <p ref={liveRef} tabIndex={-1} aria-live="polite" className="sr-only">
                 {isSubmitted ? 'Votre message a été envoyé' : ''}
               </p>

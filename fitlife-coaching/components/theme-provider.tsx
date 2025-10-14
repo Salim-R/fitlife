@@ -9,13 +9,17 @@ export function ThemeProvider({
   attribute = 'class',
   defaultTheme = 'system',
   enableSystem = true,
+  storageKey = 'fitlife-theme',
+  disableTransitionOnChange = true,
   ...props
-}: ThemeProviderProps) {
+}: ThemeProviderProps & { storageKey?: string; disableTransitionOnChange?: boolean }) {
   return (
     <NextThemesProvider
       attribute={attribute}
       defaultTheme={defaultTheme}
       enableSystem={enableSystem}
+      storageKey={storageKey}
+      disableTransitionOnChange={disableTransitionOnChange}
       {...props}
     >
       {children}

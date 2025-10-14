@@ -9,18 +9,25 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter', preload: tru
 const poppins = Poppins({ weight: ['400', '600', '700'], subsets: ['latin'], variable: '--font-poppins', preload: true });
 
 export const metadata: Metadata = {
-  title: 'FitLife Coaching - Votre partenaire fitness à Lyon',
+  title: 'FitLife Coaching - Votre partenaire fitness à Paris',
   description:
-    'FitLife Coaching vous aide à atteindre vos objectifs de santé et de bien-être à Lyon avec des programmes personnalisés et un suivi expert.',
+    'FitLife Coaching vous aide à atteindre vos objectifs de santé et de bien-être à Paris avec des programmes personnalisés et un suivi expert.',
   keywords:
-    'fitness, coaching, Lyon, santé, bien-être, entraînement personnel, nutrition, perte de poids, musculation',
+    ['fitness', 'coaching', 'Paris', 'santé', 'bien-être', 'entraînement personnel', 'nutrition', 'perte de poids', 'musculation'],
   authors: [{ name: 'FitLife Coaching' }],
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
     url: 'https://fitlife-coaching.fr',
     siteName: 'FitLife Coaching',
-    images: [{ url: 'https://fitlife-coaching.fr/og-image.jpg', width: 1200, height: 630, alt: 'FitLife Coaching - Transformez votre vie' }],
+    images: [
+      {
+        url: 'https://fitlife-coaching.fr/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'FitLife Coaching - Transformez votre vie',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
@@ -33,8 +40,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr" suppressHydrationWarning className="scroll-smooth">
       <head>
-        {/* Speculation Rules pour précharger les liens nav marqués data-prerender */}
-        <link rel="speculationrules" href="/speculation-rules.json" />
+        {/* Speculation Rules inline: préchargement des ancres marquées data-prerender */}
+        <script
+          type="speculationrules"
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              prerender: [
+                {
+                  where: { and: [{ href_matches: '^/.*' }, { selector_matches: '[data-prerender]' }] },
+                  eagerness: 'moderate',
+                },
+              ],
+              prefetch: [
+                {
+                  where: { and: [{ href_matches: '^/.*' }, { selector_matches: '[data-prerender]' }] },
+                  eagerness: 'moderate',
+                },
+              ],
+            }),
+          }}
+        />
       </head>
       <body className={`${inter.variable} ${poppins.variable} flex min-h-screen flex-col font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

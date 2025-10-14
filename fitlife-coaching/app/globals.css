@@ -1,11 +1,36 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* app/globals.css */
+@import "tailwindcss";
 
-/* ---------- Base: variables & resets ---------- */
+/* 1) Thème Tailwind v4: crée les utilitaires (bg-background, text-foreground, border-border, ring-primary, etc.) */
+@theme {
+  --color-background: hsl(var(--background, 0 0% 100%));
+  --color-foreground: hsl(var(--foreground, 222 47% 11%));
+
+  --color-primary: hsl(var(--primary, 24 95% 50%));
+  --color-primary-foreground: hsl(var(--primary-foreground, 0 0% 100%));
+
+  --color-secondary: hsl(var(--secondary, 24 90% 96%));
+  --color-secondary-foreground: hsl(var(--secondary-foreground, 24 60% 20%));
+
+  --color-accent: hsl(var(--accent, 222 89% 96%));
+  --color-accent-foreground: hsl(var(--accent-foreground, 222 47% 15%));
+
+  --color-muted: hsl(var(--muted, 220 14% 96%));
+  --color-muted-foreground: hsl(var(--muted-foreground, 220 9% 46%));
+
+  --color-card: hsl(var(--card, 0 0% 100%));
+  --color-card-foreground: hsl(var(--card-foreground, 222 47% 11%));
+
+  --color-border: hsl(var(--border, 220 13% 91%));
+  --color-input: hsl(var(--input, 220 13% 91%));
+  --color-ring: hsl(var(--ring, 24 95% 50%));
+
+  --radius: var(--radius, 0.75rem);
+}
+
+/* 2) Variables design système (light/dark) que tu peux ajuster librement */
 @layer base {
   :root {
-    /* Couleurs par défaut (doivent matcher tailwind.config.js > extend.colors) */
     --background: 0 0% 100%;
     --foreground: 222 47% 11%;
 
@@ -27,9 +52,6 @@
     --border: 220 13% 91%;
     --input: 220 13% 91%;
     --ring: 24 95% 50%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
 
     --radius: 0.75rem;
   }
@@ -62,49 +84,41 @@
   html {
     color-scheme: light dark;
     scroll-behavior: smooth;
-    /* adoucit le scroll ancre sur header fixe */
-    scroll-padding-top: 5rem;
+    scroll-padding-top: 5rem; /* header sticky */
   }
 
-  * {
-    @apply border-border;
+  /* Important: ne pas @apply border-border avant que le thème existe. Utilise la valeur native. */
+  *, ::before, ::after {
+    border-color: var(--color-border);
   }
+
   body {
+    /* Ces utilitaires existent grâce à @theme */
     @apply bg-background text-foreground;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Sélection visible mais pas fluo */
   ::selection {
     background-color: hsl(var(--primary) / 0.18);
   }
 
-  /* Sections ancrées: marge pour header sticky */
-  section[id] {
-    scroll-margin-top: 5rem;
-  }
+  section[id] { scroll-margin-top: 5rem; }
 
-  /* Focus accessible et cohérent partout */
   :focus-visible {
     @apply outline-none ring-2 ring-primary ring-offset-2;
   }
 }
 
-/* ---------- Utilities: helpers & animations ---------- */
+/* 3) Utilities maison */
 @layer utilities {
-  /* utilitaire focus si tu veux l’appliquer ponctuellement */
   .focus-visible-outline {
     @apply outline-none ring-2 ring-primary ring-offset-2;
   }
 
-  /* Si tu veux désactiver smooth scroll temporairement sur un container précis */
-  .no-smooth-scroll {
-    scroll-behavior: auto;
-  }
+  .no-smooth-scroll { scroll-behavior: auto; }
 
-  /* Réduit fortement les animations si demandé par l’utilisateur */
   @media (prefers-reduced-motion: reduce) {
     .animate-fade-in,
     .animate-slide-in,
@@ -116,7 +130,7 @@
   }
 }
 
-/* ---------- Animations locales (nommées pour Tailwind) ---------- */
+/* 4) Animations */
 @keyframes fadeIn {
   from { opacity: 0 }
   to { opacity: 1 }
@@ -125,11 +139,5 @@
   from { transform: translateY(20px); opacity: 0 }
   to { transform: translateY(0); opacity: 1 }
 }
-
-/* Ces classes seront tree-shakées car référencées explicitement */
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out both;
-}
-.animate-slide-in {
-  animation: slideInFromBottom 0.5s ease-out both;
-}
+.animate-fade-in { animation: fadeIn 0.5s ease-out both; }
+.animate-slide-in { animation: slideInFromBottom 0.5s ease-out both; }
