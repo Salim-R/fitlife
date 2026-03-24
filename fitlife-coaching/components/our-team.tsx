@@ -8,25 +8,25 @@ const TEAM = [
   {
     name: 'Sophie Martin',
     role: 'Head of Performance',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
+    image: '/images/10.png',
     description: "Supervise la programmation globale. Spécialiste en biomécanique et hypertrophie fonctionnelle.",
   },
   {
     name: 'Thomas Dubois',
     role: 'Architecte Nutritionnel',
-    image: '/images/thomas.png',
+    image: '/images/11.png',
     description: "Ingénierie des macros et timing nutritionnel. Optimise la chimie du corps pour la recomposition.",
   },
   {
     name: 'Emma Lefebvre',
     role: 'Spécialiste Récupération & Mobilité',
-    image: 'https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80',
+    image: '/images/12.png',
     description: "Optimise la longévité articulaire et la régénération nerveuse via des protocoles post-effort stricts.",
   },
   {
     name: 'Lucas Moreau',
     role: 'Expert Force & Puissance',
-    image: 'https://images.unsplash.com/photo-1583468982228-19f19164aee2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1373&q=80',
+    image: '/images/13.png',
     description: "Spécialisé dans le recrutement des fibres rapides et la surcharge progressive à haute intensité.",
   },
 ] as const;
