@@ -4,84 +4,104 @@ import * as React from "react";
 import { Card, CardContent } from "./ui/card";
 import { LazyMotion, loadFeatures, m } from "@/components/motion";
 import type { Variants } from "framer-motion";
-import { Sparkles, TrendingUp, Users, Calendar, Award } from "lucide-react";
+import { Target, TrendingUp, Activity, ShieldCheck } from "lucide-react";
 
 const cardVariants: Variants = {
-  offscreen: { y: 50, opacity: 0 },
+  offscreen: { y: 30, opacity: 0 },
   onscreen: {
     y: 0,
     opacity: 1,
-    transition: { type: "spring", bounce: 0.4, duration: 0.8 }
+    transition: { type: "spring", bounce: 0, duration: 0.8 }
   }
 };
 
 const iconVariants: Variants = {
-  hidden: { scale: 0 },
-  visible: { scale: 1, transition: { type: "spring", stiffness: 300, damping: 10 } }
+  hidden: { scale: 0.8, opacity: 0 },
+  visible: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 20 } }
 };
 
+// 🔥 Des chiffres réalistes pour du "High Ticket" (Haut de gamme)
 const STATS = [
-  { value: "5000", label: "Clients satisfaits", icon: Award, suffix: "+", color: "text-yellow-500" },
-  { value: "98", label: "Taux de réussite", icon: TrendingUp, suffix: "%", color: "text-green-500" },
-  { value: "25", label: "Coachs experts", icon: Users, suffix: "+", color: "text-blue-500" },
-  { value: "10", label: "Années d'expérience", icon: Calendar, suffix: "", color: "text-purple-500" }
+  { value: "120", label: "Transformations Validées", icon: ShieldCheck, suffix: "+" },
+  { value: "98", label: "Objectifs Atteints", icon: Target, suffix: "%" },
+  { value: "3", label: "Mois d'Engagement Min.", icon: TrendingUp, suffix: "" },
+  { value: "24/7", label: "Monitoring Actif", icon: Activity, suffix: "" }
 ] as const;
 
 export function Results() {
   return (
     <section
       id="results"
-      className="bg-gradient-to-b from-orange-100 via-orange-50 to-background py-24"
+      // 🔥 Fond très sombre pour contraster subtilement avec le zinc-950 du Hero
+      className="bg-zinc-950 border-t border-zinc-900 py-24 sm:py-32 relative overflow-hidden"
       aria-labelledby="results-title"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900/40 via-zinc-950 to-zinc-950 pointer-events-none" />
+
+      <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         <LazyMotion features={loadFeatures}>
           <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-16 text-center"
+            className="mb-16 text-center sm:mb-24 flex flex-col items-center"
           >
+            <div className="mb-4 inline-flex items-center gap-2">
+              <div className="h-px w-8 bg-lime-400" />
+              <span className="text-lime-400 font-bold tracking-[0.2em] uppercase text-xs">La Preuve</span>
+              <div className="h-px w-8 bg-lime-400" />
+            </div>
+
             <h2
               id="results-title"
-              className="mb-4 text-4xl font-bold tracking-tight text-orange-600 sm:text-5xl md:text-6xl"
+              className="text-4xl font-heading font-black uppercase tracking-tighter text-white sm:text-5xl md:text-6xl"
             >
-              Nos résultats parlent d&apos;eux-mêmes
+              Les Chiffres Ne <span className="text-zinc-600">Mentent Pas</span>
             </h2>
-            <p className="mx-auto max-w-3xl text-xl text-gray-700">
-              Découvrez l&apos;impact de notre approche sur la vie de nos clients et la qualité de nos services.
+            <p className="mt-6 mx-auto max-w-2xl text-lg text-zinc-400 font-medium">
+              Une méthodologie prouvée, testée et affinée. Voici la réalité mathématique derrière les transformations de mes athlètes.
             </p>
           </m.div>
 
-          <dl className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {STATS.map(stat => (
-              <m.div key={stat.label} initial="offscreen" whileInView="onscreen" viewport={{ once: true, amount: 0.8 }}>
-                <m.div variants={cardVariants}>
-                  <Card className="overflow-hidden bg-white shadow-lg transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl">
-                    <CardContent className="relative flex flex-col items-center justify-center p-6">
+          <dl className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {STATS.map((stat, index) => (
+              <m.div 
+                key={stat.label} 
+                initial="offscreen" 
+                whileInView="onscreen" 
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <m.div variants={cardVariants} className="h-full">
+                  {/* 🔥 Cartes ultra-clean, sombres, sans ombres cheap */}
+                  <Card className="h-full border-none bg-zinc-900/40 ring-1 ring-white/5 transition-all duration-300 hover:bg-zinc-900/80 hover:ring-lime-400/30">
+                    <CardContent className="relative flex flex-col items-center justify-center p-8 sm:p-10 text-center">
+                      
                       <m.div
-                        className={`mb-3 text-5xl ${stat.color}`}
+                        className="mb-6 text-lime-400"
                         variants={iconVariants}
                         initial="hidden"
                         whileInView="visible"
                       >
-                        <stat.icon className="h-12 w-12" aria-hidden="true" />
+                        <stat.icon className="h-10 w-10 opacity-80" strokeWidth={1.5} aria-hidden="true" />
                       </m.div>
 
                       <dt className="sr-only">{stat.label}</dt>
-                      <dd className="relative mb-1 text-5xl font-extrabold text-gray-900">
+                      
+                      {/* Typographie des nombres ultra massive */}
+                      <dd className="relative mb-2 font-heading text-5xl sm:text-6xl font-black tracking-tighter text-white">
                         {stat.value}
-                        {stat.suffix}
-                        <Sparkles
-                          className="pointer-events-none absolute -right-4 -top-2 h-6 w-6 animate-pulse text-yellow-400"
-                          aria-hidden="true"
-                        />
+                        <span className="text-3xl text-lime-400">{stat.suffix}</span>
                       </dd>
-                      <dd className="text-center text-lg text-gray-700">{stat.label}</dd>
+                      
+                      <dd className="text-xs font-bold uppercase tracking-widest text-zinc-400">
+                        {stat.label}
+                      </dd>
 
+                      {/* Accent visuel Lime en bas de carte */}
                       <div
-                        className="pointer-events-none absolute left-0 top-0 h-1 w-full animate-gradient-x bg-gradient-to-r from-primary via-secondary to-primary"
+                        className="pointer-events-none absolute bottom-0 left-0 h-0.5 w-full bg-linear-to-r from-transparent via-lime-400/20 to-transparent"
                         aria-hidden="true"
                       />
                     </CardContent>

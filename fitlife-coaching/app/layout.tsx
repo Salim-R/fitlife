@@ -1,38 +1,50 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter, Poppins } from 'next/font/google';
+// 🔥 On abandonne Poppins pour Montserrat (Plus large, plus statutaire, plus premium)
+import { Inter, Montserrat } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter', preload: true });
-const poppins = Poppins({ weight: ['400', '600', '700'], subsets: ['latin'], variable: '--font-poppins', preload: true });
+const inter = Inter({ 
+  subsets: ['latin'], 
+  variable: '--font-inter', 
+  preload: true 
+});
 
+const montserrat = Montserrat({ 
+  weight: ['400', '600', '700', '900'], // Le 900 (Black) est crucial pour des gros titres agressifs
+  subsets: ['latin'], 
+  variable: '--font-heading', // On la renomme sémantiquement
+  preload: true 
+});
+
+// 🔥 Copywriting "Élite" pour le SEO et le partage
 export const metadata: Metadata = {
-  title: 'FitLife Coaching - Votre partenaire fitness à Paris',
+  title: 'FitLife | L\'Élite du Coaching Digital',
   description:
-    'FitLife Coaching vous aide à atteindre vos objectifs de santé et de bien-être à Paris avec des programmes personnalisés et un suivi expert.',
+    'Ne vous entraînez plus au hasard. Programmes millimétrés et coaching premium pour des résultats implacables.',
   keywords:
-    ['fitness', 'coaching', 'Paris', 'santé', 'bien-être', 'entraînement personnel', 'nutrition', 'perte de poids', 'musculation'],
-  authors: [{ name: 'FitLife Coaching' }],
+    ['coaching premium', 'transformation physique', 'fitness', 'digital coaching', 'performance', 'musculation haute intensité'],
+  authors: [{ name: 'FitLife Elite' }],
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
     url: 'https://fitlife-coaching.fr',
-    siteName: 'FitLife Coaching',
+    siteName: 'FitLife Elite',
     images: [
       {
         url: 'https://fitlife-coaching.fr/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'FitLife Coaching - Transformez votre vie',
+        alt: 'FitLife - L\'Élite du Coaching Digital',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@FitLifeCoaching',
-    creator: '@FitLifeCoaching',
+    site: '@FitLifeElite',
+    creator: '@FitLifeElite',
   },
 };
 
@@ -40,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr" suppressHydrationWarning className="scroll-smooth">
       <head>
-        {/* Speculation Rules inline: préchargement des ancres marquées data-prerender */}
+        {/* Speculation Rules : Parfait, on n'y touche pas, c'est de l'excellente technique */}
         <script
           type="speculationrules"
           // eslint-disable-next-line react/no-danger
@@ -62,8 +74,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className={`${inter.variable} ${poppins.variable} flex min-h-screen flex-col font-sans`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      {/* 🔥 On applique la nouvelle variable de police */}
+      <body className={`${inter.variable} ${montserrat.variable} flex min-h-screen flex-col font-sans bg-zinc-950 text-white selection:bg-lime-400 selection:text-black`}>
+        {/* 🔥 defaultTheme="dark" force l'ambiance agressive et premium dès le chargement */}
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

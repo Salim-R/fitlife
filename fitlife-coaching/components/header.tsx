@@ -21,21 +21,20 @@ export function Header() {
     return () => document.body.classList.remove("overflow-hidden");
   }, [isMenuOpen]);
 
+  // 🔥 Ordre revu pour le tunnel de vente
   const menuItems = [
-    { href: "/#our-team", label: "Notre Équipe" },
+    { href: "/#services", label: "Expertises" },
     { href: "/#results", label: "Résultats" },
+    { href: "/#our-team", label: "L'Équipe" },
+    { href: "/#testimonials", label: "Avis" },
     { href: "/#faq", label: "FAQ" },
-    { href: "/#contact", label: "Contact" },
-    { href: "/#services", label: "Services" },
-    { href: "/#testimonials", label: "Témoignages" },
   ];
 
   return (
     <>
-      {/* Skip link (accessibilité) */}
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-primary focus:px-3 focus:py-2 focus:text-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-none focus:bg-lime-400 focus:px-3 focus:py-2 focus:text-black"
       >
         Aller au contenu
       </a>
@@ -43,31 +42,34 @@ export function Header() {
       <LazyMotion features={() => import("framer-motion").then((m) => m.domAnimation)}>
         <m.header
           role="banner"
-          className={`fixed left-0 right-0 top-0 z-50 border-b transition-all duration-300 ${
+          className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 border-b ${
             isScrolled
-              ? "bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60"
-              : "bg-background/95"
+              ? "bg-zinc-950/80 backdrop-blur-md border-white/10 py-3" // 🔥 Mode Glassmorphism sombre
+              : "bg-transparent border-transparent py-5"
           }`}
-          initial={{ y: -80 }}
+          initial={{ y: -100 }}
           animate={{ y: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex h-16 items-center justify-between">
-              <Link href="/" className="flex items-center space-x-2" aria-label="Accueil FitLife">
-                <span className="font-display text-2xl font-bold tracking-tight text-primary">
-                  FitLife
+            <div className="flex items-center justify-between">
+              
+              {/* 🔥 LOGO Premium */}
+              <Link href="/" className="flex items-center group" aria-label="Accueil FitLife">
+                <span className="font-heading text-2xl font-black uppercase tracking-tighter text-white transition-transform group-hover:scale-105">
+                  FIT<span className="text-lime-400">LIFE</span>
                 </span>
               </Link>
 
-              <nav className="hidden md:flex" aria-label="Navigation principale">
+              {/* 🔥 NAVIGATION BUREAU Luxe */}
+              <nav className="hidden md:flex items-center gap-8" aria-label="Navigation principale">
                 <ul className="flex items-center gap-8">
                   {menuItems.map((item) => (
                     <li key={item.href}>
                       <Link
                         href={item.href}
                         prefetch={false}
-                        className="text-foreground/90 transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                        className="text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-400 transition-colors hover:text-white focus-visible:outline-none focus-visible:text-lime-400"
                       >
                         {item.label}
                       </Link>
@@ -76,38 +78,56 @@ export function Header() {
                 </ul>
               </nav>
 
-              <button
-                className="rounded-md p-2 md:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                onClick={() => setIsMenuOpen((v) => !v)}
-                aria-expanded={isMenuOpen}
-                aria-controls="mobile-menu"
-                aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
-              >
-                {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
+              <div className="flex items-center gap-4">
+                {/* 🔥 CTA BUREAU (Tranchant, sans bords arrondis pour l'aspect agressif) */}
+                <Link
+                  href="/#contact"
+                  className="hidden md:flex items-center justify-center bg-lime-400 px-6 py-2.5 text-[11px] font-black uppercase tracking-widest text-black transition-all hover:bg-lime-300 hover:shadow-[0_0_20px_rgba(204,255,0,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+                >
+                  Démarrer
+                </Link>
+
+                {/* MENU MOBILE TOGGLE */}
+                <button
+                  className="md:hidden text-white focus:outline-none p-2"
+                  onClick={() => setIsMenuOpen((v) => !v)}
+                  aria-expanded={isMenuOpen}
+                  aria-controls="mobile-menu"
+                  aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+                >
+                  {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Menu mobile */}
+          {/* 🔥 MENU MOBILE (Noir et Vert Néon) */}
           <m.div
             id="mobile-menu"
             initial={false}
-            animate={{ height: isMenuOpen ? "auto" : 0, opacity: isMenuOpen ? 1 : 0 }}
-            className="overflow-hidden border-t bg-background md:hidden"
-            transition={{ duration: 0.25 }}
+            animate={{ height: isMenuOpen ? "100vh" : 0, opacity: isMenuOpen ? 1 : 0 }}
+            className="overflow-hidden bg-zinc-950 md:hidden absolute top-full left-0 w-full"
+            transition={{ duration: 0.3, ease: "easeInOut" }}
           >
-            <div className="container mx-auto space-y-3 px-4 py-4">
+            <div className="flex flex-col items-center justify-center h-full space-y-8 pb-32">
               {menuItems.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   prefetch={false}
                   onClick={() => setIsMenuOpen(false)}
-                  className="block rounded-md px-2 py-2 text-foreground/90 transition-colors hover:bg-muted hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                  className="text-2xl font-black uppercase tracking-widest text-zinc-400 transition-colors hover:text-lime-400"
                 >
                   {item.label}
                 </Link>
               ))}
+              <Link
+                href="/#contact"
+                onClick={() => setIsMenuOpen(false)}
+                className="mt-8 flex items-center justify-center bg-lime-400 px-10 py-4 text-sm font-black uppercase tracking-widest text-black transition-all active:scale-95"
+              >
+                Commencer maintenant
+              </Link>
             </div>
           </m.div>
         </m.header>

@@ -7,8 +7,8 @@ import type { ThemeProviderProps } from 'next-themes';
 export function ThemeProvider({
   children,
   attribute = 'class',
-  defaultTheme = 'system',
-  enableSystem = true,
+  defaultTheme = 'dark', // 🔥 On impose le dark mode par défaut
+  enableSystem = false,  // 🔥 On ignore le mode clair/sombre de l'OS du visiteur
   storageKey = 'fitlife-theme',
   disableTransitionOnChange = true,
   ...props
@@ -20,6 +20,7 @@ export function ThemeProvider({
       enableSystem={enableSystem}
       storageKey={storageKey}
       disableTransitionOnChange={disableTransitionOnChange}
+      forcedTheme="dark" // 🔥 Le cadenas final : empêche tout basculement accidentel en light mode
       {...props}
     >
       {children}

@@ -2,21 +2,37 @@
 
 import * as React from "react";
 import Script from "next/script";
+import { LazyMotion, loadFeatures, m, AnimatePresence } from "@/components/motion";
+import { ChevronDown } from "lucide-react";
 
+// 🔥 Copywriting "Élite" : On ne s'excuse pas, on pose un cadre strict.
 const FAQ_ITEMS = [
-  { q: "Combien de séances par semaine sont recommandées ?", a: "Le nombre de séances recommandées dépend de vos objectifs et de votre niveau de forme actuel. En général, nous recommandons 2 à 3 séances par semaine pour des résultats optimaux." },
-  { q: "Proposez-vous des programmes pour débutants ?", a: "Absolument ! Nous avons des programmes adaptés à tous les niveaux, y compris les débutants. Nos coachs vous guideront pas à pas pour vous assurer une progression en toute sécurité." },
-  { q: "Puis-je annuler mon abonnement à tout moment ?", a: "Oui, vous pouvez annuler votre abonnement à tout moment. Nous proposons des options flexibles pour s'adapter à vos besoins." },
-  { q: "Quels types de régimes alimentaires proposez-vous ?", a: "Nos nutritionnistes élaborent des plans alimentaires personnalisés en fonction de vos objectifs, préférences et éventuelles restrictions alimentaires. Nous couvrons une large gamme de régimes, du végétarien au cétogène." },
-  { q: "Quels types de coaching proposez-vous ?", a: "Nous proposons des coachings personnalisés en fitness, nutrition et bien-être, adaptés à vos objectifs personnels." },
-  { q: "Comment réserver une séance d’essai gratuite ?", a: "Vous pouvez réserver une séance d’essai gratuite en remplissant le formulaire de contact ou en nous appelant directement." },
-  { q: "Les programmes sont-ils adaptés aux débutants ?", a: "Absolument ! Nos programmes sont conçus pour convenir à tous les niveaux, des débutants aux sportifs confirmés." }
+  { 
+    q: "Quelle est la fréquence d'entraînement exigée ?", 
+    a: "Nous demandons un minimum incompressible de 3 à 4 séances par semaine. Une transformation physique radicale demande un stimulus fréquent et de la discipline. Si vous n'avez pas ce temps, ce protocole n'est pas pour vous." 
+  },
+  { 
+    q: "Acceptez-vous les débutants complets ?", 
+    a: "Oui. Le niveau technique de départ importe peu, c'est la capacité à suivre le plan à la lettre qui compte. Nous construisons vos bases biomécaniques de zéro pour éviter toute blessure." 
+  },
+  { 
+    q: "Quel est l'engagement minimum ?", 
+    a: "L'engagement initial est de 3 mois (90 jours). Il est physiologiquement et métaboliquement impossible de garantir une recomposition corporelle durable en moins de 12 semaines." 
+  },
+  { 
+    q: "Comment gérez-vous la nutrition ?", 
+    a: "Fini les régimes miracles. Vous recevez un plan de macros précis basé sur votre métabolisme de base et votre dépense énergétique. Nous l'ajustons chaque semaine selon l'évolution de votre poids et de vos mensurations." 
+  },
+  { 
+    q: "Comment se déroule le suivi à distance ?", 
+    a: "Check-in hebdomadaire obligatoire via notre plateforme. Vous envoyez vos mensurations, votre poids moyen et les vidéos de vos exercices clés. Nous corrigeons votre technique et ajustons les charges pour la semaine suivante." 
+  }
 ] as const;
 
 export function FAQ() {
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
 
-  // JSON-LD SEO (dépend d’un tableau stable)
+  // JSON-LD SEO optimisé
   const faqJsonLd = React.useMemo(
     () => ({
       "@context": "https://schema.org",
@@ -31,7 +47,8 @@ export function FAQ() {
   );
 
   return (
-    <section id="faq" className="bg-[hsl(var(--background))] py-24">
+    // 🔥 On garde le fond ultra sombre
+    <section id="faq" className="bg-zinc-950 py-24 sm:py-32 relative overflow-hidden">
       <Script
         id="faq-jsonld"
         type="application/ld+json"
@@ -39,52 +56,82 @@ export function FAQ() {
         strategy="afterInteractive"
       />
 
-      <div className="container mx-auto px-6">
-        <h2 className="text-center text-4xl font-bold tracking-tight text-[hsl(var(--primary))] sm:text-5xl md:text-6xl">
-          Questions fréquemment posées
-        </h2>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <LazyMotion features={loadFeatures}>
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-16"
+          >
+            <div className="mb-4 inline-flex items-center gap-2">
+              <div className="h-px w-8 bg-lime-400" />
+              <span className="text-lime-400 font-bold tracking-[0.2em] uppercase text-xs">Clarification</span>
+              <div className="h-px w-8 bg-lime-400" />
+            </div>
 
-        <div className="mx-auto mt-12 w-full max-w-3xl">
-          <div className="space-y-2 [--sep:theme(colors.neutral.200)] dark:[--sep:theme(colors.neutral.800)]">
-            {FAQ_ITEMS.map((item, i) => {
-              const open = activeIndex === i;
-              const panelId = `faq-panel-${i}`;
-              const buttonId = `faq-button-${i}`;
+            <h2 className="text-4xl font-heading font-black uppercase tracking-tighter text-white sm:text-5xl md:text-6xl">
+              Questions <span className="text-zinc-600">Fréquentes</span>
+            </h2>
+          </m.div>
 
-              return (
-                <div key={item.q} className="border-b pb-4 [border-color:var(--sep)]">
-                  <button
-                    id={buttonId}
-                    aria-controls={panelId}
-                    aria-expanded={open}
-                    onClick={() => setActiveIndex(open ? null : i)}
-                    className="flex w-full items-center justify-between text-left text-lg font-semibold text-[hsl(var(--foreground))] focus:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--primary))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--background))]"
+          <div className="mx-auto mt-12 w-full max-w-3xl">
+            <div className="space-y-4">
+              {FAQ_ITEMS.map((item, i) => {
+                const open = activeIndex === i;
+                const panelId = `faq-panel-${i}`;
+                const buttonId = `faq-button-${i}`;
+
+                return (
+                  <m.div 
+                    key={item.q} 
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    // 🔥 Design premium : fond très sombre, bordure au survol
+                    className={`border transition-colors duration-300 ${open ? 'border-lime-400 bg-zinc-900/50' : 'border-zinc-800 bg-zinc-900/20 hover:border-zinc-700'}`}
                   >
-                    <span>{item.q}</span>
-                    <svg
-                      className={`h-4 w-4 shrink-0 transition-transform duration-300 motion-reduce:transition-none ${open ? "rotate-180" : "rotate-0"}`}
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      aria-hidden="true"
+                    <button
+                      id={buttonId}
+                      aria-controls={panelId}
+                      aria-expanded={open}
+                      onClick={() => setActiveIndex(open ? null : i)}
+                      className="flex w-full items-center justify-between px-6 py-5 text-left focus:outline-none"
                     >
-                      <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clipRule="evenodd" />
-                    </svg>
-                  </button>
+                      <span className={`text-base sm:text-lg font-bold transition-colors ${open ? 'text-lime-400' : 'text-zinc-300'}`}>
+                        {item.q}
+                      </span>
+                      <div className={`ml-4 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-300 ${open ? 'border-lime-400 bg-lime-400 text-black rotate-180' : 'border-zinc-700 text-zinc-400'}`}>
+                        <ChevronDown size={18} strokeWidth={2.5} />
+                      </div>
+                    </button>
 
-                  <div
-                    id={panelId}
-                    role="region"
-                    aria-labelledby={buttonId}
-                    hidden={!open}
-                    className="pt-2 text-[hsl(var(--foreground))/0.8]"
-                  >
-                    {item.a}
-                  </div>
-                </div>
-              );
-            })}
+                    <AnimatePresence>
+                      {open && (
+                        <m.div
+                          id={panelId}
+                          role="region"
+                          aria-labelledby={buttonId}
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-6 pb-6 pt-2 text-zinc-400 leading-relaxed text-sm sm:text-base">
+                            {item.a}
+                          </div>
+                        </m.div>
+                      )}
+                    </AnimatePresence>
+                  </m.div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </LazyMotion>
       </div>
     </section>
   );
