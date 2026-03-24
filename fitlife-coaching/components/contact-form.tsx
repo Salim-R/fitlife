@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { TextArea } from '@/components/ui/text-area';
-import { Send, Check, Loader2, ArrowRight } from 'lucide-react';
+import { Check, Loader2, ArrowRight } from 'lucide-react';
 import { LazyMotion, loadFeatures, m } from '@/components/motion';
 
 export function ContactForm() {
@@ -55,7 +55,7 @@ export function ContactForm() {
     <section id="contact" className="bg-zinc-950 py-24 sm:py-32 relative overflow-hidden">
       
       {/* Background Glow */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-lime-400/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-0 w-150 h-150 bg-lime-400/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <LazyMotion features={loadFeatures}>
@@ -79,7 +79,7 @@ export function ContactForm() {
               </h2>
               
               <p className="mb-8 text-lg font-medium leading-relaxed text-zinc-400">
-                L'entrée dans nos programmes est soumise à validation. Détaillez votre situation actuelle, vos antécédents sportifs et votre objectif exact.
+                L&rsquo;entr&eacute;e dans nos programmes est soumise à validation. Détaillez votre situation actuelle, vos antécédents sportifs et votre objectif exact.
               </p>
 
               <div className="space-y-4">

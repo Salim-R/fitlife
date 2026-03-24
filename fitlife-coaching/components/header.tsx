@@ -34,7 +34,7 @@ export function Header() {
     <>
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-none focus:bg-lime-400 focus:px-3 focus:py-2 focus:text-black"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-60 focus:rounded-none focus:bg-lime-400 focus:px-3 focus:py-2 focus:text-black"
       >
         Aller au contenu
       </a>

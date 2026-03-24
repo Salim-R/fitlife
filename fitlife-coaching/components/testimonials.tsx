@@ -96,9 +96,9 @@ export function Testimonials() {
                     <Star fill="currentColor" size={20} />
                   </div>
 
-                  <div className="mx-auto min-h-[8rem] flex items-center justify-center">
+                  <div className="mx-auto min-h-32 flex items-center justify-center">
                     <p className="text-xl sm:text-2xl font-medium text-white leading-relaxed">
-                      "{t.quote}"
+                      &ldquo;{t.quote}&rdquo;
                     </p>
                   </div>
                   

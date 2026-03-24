@@ -74,7 +74,7 @@ export function Services() {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              Chaque aspect de votre progression est monitoré, calculé et optimisé. Pas de place pour l'improvisation ou le hasard.
+              Chaque aspect de votre progression est monitoré, calculé et optimisé. Pas de place pour l&rsquo;improvisation ou le hasard.
             </m.p>
           </div>
 
@@ -92,7 +92,7 @@ export function Services() {
                 <article className="relative flex flex-col h-full bg-zinc-900/50 border border-zinc-800/50 overflow-hidden transition-all duration-500 hover:border-lime-400/50 hover:bg-zinc-900 hover:shadow-[0_0_40px_rgba(204,255,0,0.05)]">
                   
                   {/* Image Header avec effet de révélation des couleurs */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-zinc-950">
+                  <div className="relative aspect-16/10 w-full overflow-hidden bg-zinc-950">
                     <Image
                       src={service.image}
                       alt={service.title}
@@ -100,7 +100,7 @@ export function Services() {
                       className="object-cover grayscale opacity-50 transition-all duration-700 group-hover:grayscale-0 group-hover:opacity-80 group-hover:scale-105"
                       sizes="(max-width:768px) 100vw, 33vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent" />
+                    <div className="absolute inset-0 bg-linear-to-t from-zinc-900 via-zinc-900/40 to-transparent" />
                     
                     {/* Icône Vectorielle Premium */}
                     <div className="absolute bottom-5 left-6 p-3 bg-zinc-950/80 backdrop-blur-md border border-zinc-800 text-lime-400 transition-transform duration-500 group-hover:-translate-y-2">

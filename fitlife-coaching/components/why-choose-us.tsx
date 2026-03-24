@@ -46,7 +46,7 @@ export function WhyChooseUs() {
     <section className="relative overflow-hidden bg-zinc-950 py-24 sm:py-32 border-t border-zinc-900" aria-labelledby={`${uid}-title`}>
       
       {/* Background décoratif très subtil (grille) */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-size-[24px_24px]" />
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 z-10">
         
@@ -58,7 +58,7 @@ export function WhyChooseUs() {
           </div>
 
           <h2 id={`${uid}-title`} className="text-4xl font-heading font-black uppercase tracking-tighter text-white sm:text-5xl md:text-6xl">
-            Le Standard <span className="text-zinc-600">D'Excellence</span>
+            Le Standard <span className="text-zinc-600">D&rsquo;Excellence</span>
           </h2>
         </div>
 
@@ -81,7 +81,7 @@ export function WhyChooseUs() {
                 transition={{ duration: 0.4, delay: i * 0.1 }}
               >
                 {/* Ligne d'accentuation à gauche, typique du design tech/cyber */}
-                <div className="absolute -left-4 top-0 h-full w-[2px] bg-zinc-800 transition-colors duration-300 group-hover:bg-lime-400" />
+                <div className="absolute -left-4 top-0 h-full w-0.5 bg-zinc-800 transition-colors duration-300 group-hover:bg-lime-400" />
                 
                 <div className="flex items-center gap-4">
                   <div className="flex h-12 w-12 items-center justify-center bg-zinc-900 border border-zinc-800 text-lime-400 transition-transform duration-300 group-hover:scale-110 group-hover:border-lime-400/30">

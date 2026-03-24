@@ -37,7 +37,7 @@ export function OurTeam() {
     <section id="our-team" className="bg-zinc-950 py-24 sm:py-32 relative overflow-hidden" aria-labelledby="our-team-title">
       
       {/* Glow de fond subtil */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-[800px] bg-lime-400/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-200 bg-lime-400/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <LazyMotion features={loadFeatures}>
@@ -79,7 +79,7 @@ export function OurTeam() {
                 <div className="relative flex flex-col h-full bg-zinc-900/20 hover:bg-zinc-900/50 transition-colors duration-500 border border-zinc-800/30 hover:border-lime-400/30 overflow-hidden">
                   
                   {/* 🔥 Format Portrait (3/4) avec filtre de colorimétrie */}
-                  <div className="relative aspect-[3/4] w-full overflow-hidden bg-zinc-950">
+                  <div className="relative aspect-3/4 w-full overflow-hidden bg-zinc-950">
                     <Image
                       src={member.image}
                       alt={member.name}
@@ -88,7 +88,7 @@ export function OurTeam() {
                       sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 25vw"
                     />
                     {/* Dégradé pour rendre le texte lisible */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-80" />
+                    <div className="absolute inset-0 bg-linear-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-80" />
                     
                     {/* Ligne d'accentuation */}
                     <div className="absolute top-0 left-0 w-full h-1 bg-lime-400 transform -translate-y-full transition-transform duration-500 group-hover:translate-y-0" />

@@ -17,7 +17,7 @@ export function Footer() {
               </span>
             </Link>
             <p className="mt-4 max-w-xs text-sm font-medium text-zinc-400 leading-relaxed">
-              L'ingénierie du corps humain. Périodisation, biomécanique et nutrition data-driven.
+              L&rsquo;ingénierie du corps humain. Périodisation, biomécanique et nutrition data-driven.
             </p>
           </div>
 

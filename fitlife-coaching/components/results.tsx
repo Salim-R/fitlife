@@ -36,7 +36,7 @@ export function Results() {
       className="bg-zinc-950 border-t border-zinc-900 py-24 sm:py-32 relative overflow-hidden"
       aria-labelledby="results-title"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-zinc-900/40 via-zinc-950 to-zinc-950 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-zinc-900/40 via-zinc-950 to-zinc-950 pointer-events-none" />
 
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         <LazyMotion features={loadFeatures}>
