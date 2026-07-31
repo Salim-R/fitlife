@@ -9,7 +9,8 @@ import { ContactForm } from '@/components/contact-form';
 
 export default function Home() {
   return (
-    // 🔥 Le bg-zinc-950 global sécurise le fait qu'il n'y aura aucun flash blanc entre les sections
+    // Le fond est posé ici plutôt que sur chaque section : une seule d'entre
+    // elles qui l'oublierait laisserait passer une bande claire au défilement.
     <div className="flex min-h-screen flex-col bg-zinc-950 selection:bg-lime-400 selection:text-black">
       <main id="main" className="flex-1">
         {/* 1. L'Accroche */}

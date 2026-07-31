@@ -1,13 +1,13 @@
 'use client';
 
-// 🔥 On importe directement. Framer Motion GÈRE parfaitement le SSR.
-// Ne jamais utiliser next/dynamic avec { ssr: false } pour des wrappers de contenu.
+// Import direct : Framer Motion prend en charge le rendu serveur. Passer par
+// `next/dynamic` avec `{ ssr: false }` retirerait le contenu du HTML initial,
+// ce qui le rendrait invisible aux moteurs de recherche.
 import { LazyMotion, m, AnimatePresence } from 'framer-motion';
 
-// 🔥 Le "Lazy Loading" intelligent : 
-// Le code de Framer Motion (qui est lourd) n'est chargé que lorsque l'animation démarre.
-// "domAnimation" exclut les features inutiles comme le drag-and-drop, divisant le poids par 4.
+// Le moteur d'animation n'est téléchargé qu'au moment où une animation
+// démarre. `domAnimation` écarte les fonctions inutiles ici, glisser-déposer
+// en tête, et divise le poids du paquet par quatre.
 const loadFeatures = () => import('framer-motion').then((res) => res.domAnimation);
 
-// On réexporte proprement
 export { LazyMotion, m, AnimatePresence, loadFeatures };

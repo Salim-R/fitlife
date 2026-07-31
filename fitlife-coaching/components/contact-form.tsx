@@ -46,12 +46,12 @@ export function ContactForm() {
     setIsSubmitting(false);
     setIsSubmitted(true);
     
-    // 🔥 FINI LES CONFETTIS. On fait un scroll smooth ou on affiche un message sec.
+    // La confirmation est affichée en place plutôt que dans une fenêtre :
+    // le visiteur garde le fil de la page et sait où il en est.
     liveRef.current?.focus();
   };
 
   return (
-    // 🔥 Fond zinc-950 absolu. On garde le prospect dans l'immersion jusqu'au bout.
     <section id="contact" className="bg-zinc-950 py-24 sm:py-32 relative overflow-hidden">
       
       {/* Background Glow */}

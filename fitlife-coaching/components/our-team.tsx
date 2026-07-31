@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { LazyMotion, loadFeatures, m } from '@/components/motion';
 
-// 🔥 Copywriting "Élite" : On transforme des profils basiques en experts redoutables.
+// Contenu de démonstration : profils fictifs.
 const TEAM = [
   {
     name: 'Sophie Martin',
@@ -33,7 +33,6 @@ const TEAM = [
 
 export function OurTeam() {
   return (
-    // 🔥 Toujours le fond zinc-950 pour la cohérence
     <section id="our-team" className="bg-zinc-950 py-24 sm:py-32 relative overflow-hidden" aria-labelledby="our-team-title">
       
       {/* Glow de fond subtil */}
@@ -75,10 +74,8 @@ export function OurTeam() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="group cursor-pointer"
               >
-                {/* 🔥 Design Editorial : Sans bordure, focus sur l'image */}
                 <div className="relative flex flex-col h-full bg-zinc-900/20 hover:bg-zinc-900/50 transition-colors duration-500 border border-zinc-800/30 hover:border-lime-400/30 overflow-hidden">
                   
-                  {/* 🔥 Format Portrait (3/4) avec filtre de colorimétrie */}
                   <div className="relative aspect-3/4 w-full overflow-hidden bg-zinc-950">
                     <Image
                       src={member.image}

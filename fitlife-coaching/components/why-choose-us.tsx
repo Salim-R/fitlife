@@ -4,7 +4,7 @@ import { useId } from 'react';
 import { Crosshair, Activity, Cpu, ShieldAlert, Lock, TrendingUp } from 'lucide-react';
 import { LazyMotion, loadFeatures, m } from '@/components/motion';
 
-// 🔥 Copywriting "High Ticket" : On remplace les banalités par des standards militaires/scientifiques
+// Contenu de démonstration.
 const STANDARDS = [
   {
     title: 'Périodisation Millimétrée',
@@ -42,7 +42,6 @@ export function WhyChooseUs() {
   const uid = useId();
 
   return (
-    // 🔥 Toujours le fond zinc-950 pour souder toutes les sections ensemble
     <section className="relative overflow-hidden bg-zinc-950 py-24 sm:py-32 border-t border-zinc-900" aria-labelledby={`${uid}-title`}>
       
       {/* Background décoratif très subtil (grille) */}

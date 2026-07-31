@@ -20,7 +20,8 @@ const iconVariants: Variants = {
   visible: { scale: 1, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 20 } }
 };
 
-// 🔥 Des chiffres réalistes pour du "High Ticket" (Haut de gamme)
+// Chiffres de démonstration. Ils restent volontairement plausibles : des
+// promesses invraisemblables décrédibilisent une page de coach.
 const STATS = [
   { value: "120", label: "Transformations Validées", icon: ShieldCheck, suffix: "+" },
   { value: "98", label: "Objectifs Atteints", icon: Target, suffix: "%" },
@@ -32,7 +33,6 @@ export function Results() {
   return (
     <section
       id="results"
-      // 🔥 Fond très sombre pour contraster subtilement avec le zinc-950 du Hero
       className="bg-zinc-950 border-t border-zinc-900 py-24 sm:py-32 relative overflow-hidden"
       aria-labelledby="results-title"
     >
@@ -74,7 +74,6 @@ export function Results() {
                 transition={{ delay: index * 0.1 }}
               >
                 <m.div variants={cardVariants} className="h-full">
-                  {/* 🔥 Cartes ultra-clean, sombres, sans ombres cheap */}
                   <Card className="h-full border-none bg-zinc-900/40 ring-1 ring-white/5 transition-all duration-300 hover:bg-zinc-900/80 hover:ring-lime-400/30">
                     <CardContent className="relative flex flex-col items-center justify-center p-8 sm:p-10 text-center">
                       

@@ -2,11 +2,13 @@ import type { NextConfig } from "next";
 import path from "node:path";
 
 const nextConfig: NextConfig = {
-  // 🔥 Sécurité & Performance de base
+  // L'en-tête X-Powered-By annonce la technologie du serveur : le retirer
+  // prive un attaquant d'une information gratuite.
   poweredByHeader: false,
   reactStrictMode: true,
 
-  // 🔥 Optimisation de l'affichage
+  // Les formats modernes sont servis en priorité, avec repli automatique.
+  // Les tailles déclarées bornent ce que l'optimiseur accepte de générer.
   images: {
     remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
     formats: ["image/avif", "image/webp"],
@@ -14,25 +16,28 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
   },
 
-  // Hack de tracing (à nettoyer un jour dans l'architecture de tes dossiers)
+  // Le dépôt contient le client dans un sous-dossier. Sans cette racine
+  // explicite, Next remonte trop haut pour tracer les fichiers et embarque
+  // des dépendances qui ne le concernent pas.
   outputFileTracingRoot: path.resolve(__dirname),
 
   async headers() {
     return [
       {
-        // Cache agressif pour les assets
+        // Ces fichiers portent une empreinte dans leur nom : leur contenu ne
+        // change jamais, ils peuvent donc être gardés un an.
         source: "/:all*(svg|jpg|jpeg|png|gif|webp|avif|ico|ttf|otf|woff|woff2)",
         headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
       },
       {
-        // 🔥 BOUCLIER DE SÉCURITÉ ABSOLU (Applicable à toutes les routes)
+        // En-têtes de sécurité appliqués à toutes les routes.
         source: "/:path*",
         headers: [
           { key: "X-DNS-Prefetch-Control", value: "on" },
-          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" }, // Force le HTTPS pendant 2 ans
-          { key: "X-Frame-Options", value: "SAMEORIGIN" }, // Bloque le Clickjacking (Iframes)
-          { key: "X-Content-Type-Options", value: "nosniff" }, // Bloque le MIME-sniffing
-          { key: "Referrer-Policy", value: "origin-when-cross-origin" }, // Protège les données de navigation
+          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "origin-when-cross-origin" },
         ],
       },
     ];
@@ -40,7 +45,9 @@ const nextConfig: NextConfig = {
 
   async redirects() {
     return [
-      // Fallback de redirection (Privilégier la configuration DNS Vercel en production)
+      // Repli applicatif : la redirection du sous-domaine www se règle mieux
+      // au niveau DNS, mais celle-ci garantit le comportement si la zone
+      // n'est pas encore propagée.
       {
         source: "/:path*",
         has: [{ type: "host", value: "www.fitlife-coaching.vercel.app" }],

@@ -3,13 +3,11 @@ import { Facebook, Instagram, Linkedin, ArrowUpRight } from "lucide-react";
 
 export function Footer() {
   return (
-    // 🔥 Fond zinc-950 et bordure très sombre pour se fondre avec la section précédente
     <footer className="border-t border-zinc-900 bg-zinc-950 py-12 md:py-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="mb-12 flex flex-col items-center justify-between gap-8 md:flex-row md:items-start">
           
-          {/* 🔥 Identité Visuelle (Cohérente avec le Header) */}
           <div className="text-center md:text-left">
             <Link href="/" className="inline-block" aria-label="Accueil FitLife">
               <span className="font-heading text-3xl font-black uppercase tracking-tighter text-white">
@@ -21,7 +19,6 @@ export function Footer() {
             </p>
           </div>
 
-          {/* 🔥 Navigation Secondaire Premium (Uppercase, tracking large) */}
           <nav aria-label="Liens de pied de page" className="w-full md:w-auto">
             <ul className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-[11px] font-bold uppercase tracking-widest text-zinc-500">
               <li>
@@ -45,7 +42,7 @@ export function Footer() {
 
         <div className="flex flex-col-reverse items-center justify-between gap-6 text-xs font-medium text-zinc-500 md:flex-row">
           
-          {/* Copyright & Dev Credit (Pour ton portfolio !) */}
+          {/* Mention de l'auteur */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <p>© {new Date().getFullYear()} FitLife Coaching. Tous droits réservés.</p>
             <p className="flex items-center gap-1">

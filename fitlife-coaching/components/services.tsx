@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ArrowRight, Dumbbell, Activity, Target } from 'lucide-react';
 import { LazyMotion, loadFeatures, m } from '@/components/motion';
 
-// 🔥 Copywriting 100% "Élite Digital" - Fini les cours collectifs
+// Contenu de démonstration.
 const EXPERTISES = [
   {
     title: 'Programmation Sur-Mesure',
@@ -35,7 +35,6 @@ const EXPERTISES = [
 
 export function Services() {
   return (
-    // 🔥 Fond noir absolu pour la continuité
     <section id="services" className="bg-zinc-950 py-24 sm:py-32 relative overflow-hidden" aria-labelledby="services-title">
       
       {/* Ligne de séparation subtile en haut */}
@@ -55,7 +54,6 @@ export function Services() {
               <div className="h-px w-8 bg-lime-400" />
             </m.div>
 
-            {/* 🔥 Typographie agressive */}
             <m.h2
               id="services-title"
               className="text-4xl font-heading font-black uppercase tracking-tighter text-white sm:text-5xl md:text-6xl"
@@ -88,7 +86,6 @@ export function Services() {
                 transition={{ duration: 0.6, delay: index * 0.15 }}
                 className="group h-full"
               >
-                {/* 🔥 Carte Premium : Sombre, bordure subtile, hover au néon */}
                 <article className="relative flex flex-col h-full bg-zinc-900/50 border border-zinc-800/50 overflow-hidden transition-all duration-500 hover:border-lime-400/50 hover:bg-zinc-900 hover:shadow-[0_0_40px_rgba(204,255,0,0.05)]">
                   
                   {/* Image Header avec effet de révélation des couleurs */}

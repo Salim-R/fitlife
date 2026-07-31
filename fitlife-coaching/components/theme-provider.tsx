@@ -4,23 +4,20 @@ import * as React from 'react';
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import type { ThemeProviderProps } from 'next-themes';
 
-export function ThemeProvider({
-  children,
-  attribute = 'class',
-  defaultTheme = 'dark', // 🔥 On impose le dark mode par défaut
-  enableSystem = false,  // 🔥 On ignore le mode clair/sombre de l'OS du visiteur
-  storageKey = 'fitlife-theme',
-  disableTransitionOnChange = true,
-  ...props
-}: ThemeProviderProps & { storageKey?: string; disableTransitionOnChange?: boolean }) {
+/**
+ * Le site n'existe qu'en thème sombre : la charte est bâtie sur un fond
+ * zinc-950, et un rendu clair casserait tous les contrastes.
+ *
+ * `forcedTheme` suffit à l'imposer. Il rend inopérants `defaultTheme`,
+ * `enableSystem` et le stockage local, qui ne sont donc pas déclarés : les
+ * exposer laisserait croire qu'on peut basculer le thème depuis l'extérieur.
+ */
+export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return (
     <NextThemesProvider
-      attribute={attribute}
-      defaultTheme={defaultTheme}
-      enableSystem={enableSystem}
-      storageKey={storageKey}
-      disableTransitionOnChange={disableTransitionOnChange}
-      forcedTheme="dark" // 🔥 Le cadenas final : empêche tout basculement accidentel en light mode
+      attribute="class"
+      forcedTheme="dark"
+      disableTransitionOnChange
       {...props}
     >
       {children}

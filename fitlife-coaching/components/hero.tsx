@@ -12,11 +12,9 @@ export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-zinc-950">
       
-      {/* 🔥 Dégradés allégés pour laisser respirer l'image */}
       <div className="absolute inset-0 z-10 bg-linear-to-b from-zinc-950/20 via-zinc-950/50 to-zinc-950 pointer-events-none" />
       <div className="absolute inset-0 z-10 bg-linear-to-r from-zinc-950 via-zinc-950/50 to-transparent pointer-events-none hidden md:block" />
 
-      {/* 🔥 Opacité remontée à 40/50% pour assumer le visuel */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/background.svg"
@@ -32,7 +30,6 @@ export function Hero() {
       <div className="container relative z-20 mx-auto flex flex-col items-start px-4 sm:px-6 lg:px-8 pt-20">
         <LazyMotion features={() => import("framer-motion").then(m => m.domAnimation)}>
           
-          {/* 🔥 Badge mis à jour : Focus Data */}
           <m.div 
             className="mb-6 inline-flex border border-lime-400/20 bg-lime-400/5 px-4 py-1.5"
             initial={reduce ? undefined : { opacity: 0, y: 20 }}
@@ -55,7 +52,6 @@ export function Hero() {
             physique en <span className="text-lime-400">90 jours.</span>
           </m.h1>
 
-          {/* 🔥 Sous-texte mis à jour : Plus tranchant */}
           <m.p
             className="mt-6 max-w-xl text-lg text-zinc-300 sm:text-xl font-medium leading-relaxed"
             initial={reduce ? undefined : { opacity: 0, y: 20 }}
@@ -96,7 +92,6 @@ export function Hero() {
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            {/* 🔥 CTA mis à jour : Zéro friction */}
             <Link 
               href="/#contact" 
               className="group flex items-center justify-center bg-lime-400 px-8 py-4 text-sm font-black uppercase tracking-widest text-black transition-all hover:bg-lime-300 hover:shadow-[0_0_30px_rgba(204,255,0,0.2)]"

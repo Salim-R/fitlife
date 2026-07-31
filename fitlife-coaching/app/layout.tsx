@@ -1,6 +1,5 @@
 import './globals.css';
 import type { Metadata } from 'next';
-// 🔥 On abandonne Poppins pour Montserrat (Plus large, plus statutaire, plus premium)
 import { Inter, Montserrat } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Header } from '@/components/header';
@@ -13,13 +12,14 @@ const inter = Inter({
 });
 
 const montserrat = Montserrat({ 
-  weight: ['400', '600', '700', '900'], // Le 900 (Black) est crucial pour des gros titres agressifs
+  // La graisse 900 porte les titres de section ; les trois autres couvrent
+  // le reste. Charger toute la fonte alourdirait la page pour rien.
+  weight: ['400', '600', '700', '900'],
   subsets: ['latin'], 
-  variable: '--font-heading', // On la renomme sémantiquement
+  variable: '--font-heading',
   preload: true 
 });
 
-// 🔥 Copywriting "Élite" pour le SEO et le partage
 export const metadata: Metadata = {
   title: 'FitLife | L\'Élite du Coaching Digital',
   description:
@@ -52,7 +52,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="fr" suppressHydrationWarning className="scroll-smooth">
       <head>
-        {/* Speculation Rules : Parfait, on n'y touche pas, c'est de l'excellente technique */}
+        {/* Le navigateur précharge les pages marquées data-prerender au survol
+            ou au premier signe d'intention. « moderate » attend un indice réel
+            plutôt que de précharger sans discernement. */}
         <script
           type="speculationrules"
           // eslint-disable-next-line react/no-danger
@@ -74,10 +76,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      {/* 🔥 On applique la nouvelle variable de police */}
       <body className={`${inter.variable} ${montserrat.variable} flex min-h-screen flex-col font-sans bg-zinc-950 text-white selection:bg-lime-400 selection:text-black`}>
-        {/* 🔥 defaultTheme="dark" force l'ambiance agressive et premium dès le chargement */}
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+        <ThemeProvider>
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

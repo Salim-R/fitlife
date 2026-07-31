@@ -5,7 +5,7 @@ import { useReducedMotion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
 import { LazyMotion, loadFeatures, m, AnimatePresence } from '@/components/motion';
 
-// 🔥 Copywriting "High Ticket" : Fini l'ambiance, on parle de RÉSULTATS concrets et de ROI.
+// Contenu de démonstration : témoignages fictifs.
 const TESTIMONIALS = [
   { 
     quote: "J'ai perdu 12kg de masse grasse tout en doublant mes max au squat. Le niveau de précision de la programmation est chirurgical. Aucun hasard, que des mathématiques.", 
@@ -83,7 +83,6 @@ export function Testimonials() {
                 transition={{ duration: 0.4, ease: "easeInOut" }}
                 className="px-4 sm:px-12"
               >
-                {/* 🔥 Carte de témoignage Premium */}
                 <article className="relative bg-zinc-900/40 border border-zinc-800 p-8 sm:p-12 text-center transition-all">
                   <Quote className="mx-auto mb-6 h-10 w-10 text-zinc-700" aria-hidden="true" />
                   
@@ -114,7 +113,6 @@ export function Testimonials() {
               </m.div>
             </AnimatePresence>
 
-            {/* 🔥 Contrôles Minimalistes et Agressifs */}
             <div className="mt-8 flex items-center justify-center gap-4">
               <button 
                 onClick={prev} 

@@ -21,7 +21,8 @@ export function Header() {
     return () => document.body.classList.remove("overflow-hidden");
   }, [isMenuOpen]);
 
-  // 🔥 Ordre revu pour le tunnel de vente
+  // L'ordre suit la lecture attendue de la page : ce que nous faisons, pour
+  // qui, avec quelles preuves, puis le contact.
   const menuItems = [
     { href: "/#services", label: "Expertises" },
     { href: "/#results", label: "Résultats" },
@@ -44,7 +45,7 @@ export function Header() {
           role="banner"
           className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 border-b ${
             isScrolled
-              ? "bg-zinc-950/80 backdrop-blur-md border-white/10 py-3" // 🔥 Mode Glassmorphism sombre
+              ? "bg-zinc-950/80 backdrop-blur-md border-white/10 py-3"
               : "bg-transparent border-transparent py-5"
           }`}
           initial={{ y: -100 }}
@@ -54,14 +55,12 @@ export function Header() {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between">
               
-              {/* 🔥 LOGO Premium */}
               <Link href="/" className="flex items-center group" aria-label="Accueil FitLife">
                 <span className="font-heading text-2xl font-black uppercase tracking-tighter text-white transition-transform group-hover:scale-105">
                   FIT<span className="text-lime-400">LIFE</span>
                 </span>
               </Link>
 
-              {/* 🔥 NAVIGATION BUREAU Luxe */}
               <nav className="hidden md:flex items-center gap-8" aria-label="Navigation principale">
                 <ul className="flex items-center gap-8">
                   {menuItems.map((item) => (
@@ -79,7 +78,6 @@ export function Header() {
               </nav>
 
               <div className="flex items-center gap-4">
-                {/* 🔥 CTA BUREAU (Tranchant, sans bords arrondis pour l'aspect agressif) */}
                 <Link
                   href="/#contact"
                   className="hidden md:flex items-center justify-center bg-lime-400 px-6 py-2.5 text-[11px] font-black uppercase tracking-widest text-black transition-all hover:bg-lime-300 hover:shadow-[0_0_20px_rgba(204,255,0,0.3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-400 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
@@ -101,7 +99,6 @@ export function Header() {
             </div>
           </div>
 
-          {/* 🔥 MENU MOBILE (Noir et Vert Néon) */}
           <m.div
             id="mobile-menu"
             initial={false}

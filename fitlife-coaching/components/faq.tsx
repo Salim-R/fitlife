@@ -5,7 +5,7 @@ import Script from "next/script";
 import { LazyMotion, loadFeatures, m, AnimatePresence } from "@/components/motion";
 import { ChevronDown } from "lucide-react";
 
-// 🔥 Copywriting "Élite" : On ne s'excuse pas, on pose un cadre strict.
+// Contenu de démonstration.
 const FAQ_ITEMS = [
   { 
     q: "Quelle est la fréquence d'entraînement exigée ?", 
@@ -47,7 +47,6 @@ export function FAQ() {
   );
 
   return (
-    // 🔥 On garde le fond ultra sombre
     <section id="faq" className="bg-zinc-950 py-24 sm:py-32 relative overflow-hidden">
       <Script
         id="faq-jsonld"
@@ -90,7 +89,6 @@ export function FAQ() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    // 🔥 Design premium : fond très sombre, bordure au survol
                     className={`border transition-colors duration-300 ${open ? 'border-lime-400 bg-zinc-900/50' : 'border-zinc-800 bg-zinc-900/20 hover:border-zinc-700'}`}
                   >
                     <button

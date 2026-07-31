@@ -33,7 +33,9 @@
   }
 
   html {
-    color-scheme: dark; /* 🔥 Force le navigateur à utiliser ses scrollbars sombres par défaut */
+    /* Indique au navigateur de rendre ses propres éléments, barres de
+       défilement et champs natifs compris, dans leur variante sombre. */
+    color-scheme: dark;
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
     background-color: #09090b; /* Sécurité anti-flash blanc */
@@ -46,7 +48,8 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* 🔥 Surlignage Tranchant : Vert Néon & Texte Noir */
+  /* Le texte sélectionné reprend l'accent de la charte. Le noir dessus est
+     imposé : du blanc sur ce vert tomberait sous le seuil de contraste. */
   ::selection {
     background-color: #a3e635;
     color: #000000;
