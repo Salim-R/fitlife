@@ -53,5 +53,5 @@ Le site est accessible sur http://localhost:3000
 
 ---
 
-Réalisé par Salim Rhamoumi — développeur front-end React / Next.js
+Réalisé par Salim Rhamoumi - développeur web full-stack JavaScript
 [salimrhamoumi.com](https://www.salimrhamoumi.com/)
