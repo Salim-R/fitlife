@@ -10,13 +10,16 @@ Le code du projet se trouve dans [`fitlife-coaching/`](./fitlife-coaching).
 
 ## Stack
 
-- Next.js 15 (App Router) et React 19
+- Next.js 16 (App Router) et React 19
 - TypeScript
 - Tailwind CSS 4
 - Radix UI pour les composants accessibles (accordéon, slots)
 - Framer Motion pour les animations
-- next-themes pour le mode sombre
 - Déployé sur Vercel
+
+Le site n'existe qu'en thème sombre : la charte est bâtie sur un fond zinc-950
+et les couleurs sont déclarées dans le bloc `@theme` de `globals.css`, sans
+variantes claires. Aucune bibliothèque de gestion de thème n'est donc utilisée.
 
 ## Points travaillés
 

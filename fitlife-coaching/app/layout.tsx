@@ -1,7 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter, Montserrat } from 'next/font/google';
-import { ThemeProvider } from '@/components/theme-provider';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 
@@ -50,14 +49,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" suppressHydrationWarning className="scroll-smooth">
+    <html lang="fr" className="scroll-smooth">
       <head>
         {/* Le navigateur précharge les pages marquées data-prerender au survol
             ou au premier signe d'intention. « moderate » attend un indice réel
             plutôt que de précharger sans discernement. */}
         <script
           type="speculationrules"
-          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               prerender: [
@@ -77,11 +75,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className={`${inter.variable} ${montserrat.variable} flex min-h-screen flex-col font-sans bg-zinc-950 text-white selection:bg-lime-400 selection:text-black`}>
-        <ThemeProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );
