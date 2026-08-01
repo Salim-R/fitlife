@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import Script from "next/script";
 import { LazyMotion, loadFeatures, m, AnimatePresence } from "@/components/motion";
 import { ChevronDown } from "lucide-react";
 
@@ -48,11 +47,15 @@ export function FAQ() {
 
   return (
     <section id="faq" className="bg-zinc-950 py-24 sm:py-32 relative overflow-hidden">
-      <Script
-        id="faq-jsonld"
+      {/* Balise rendue directement, et non via next/script : la stratégie
+          « afterInteractive » injecte le script après l'hydratation, donc
+          hors du HTML servi. Un robot qui n'exécute pas le JavaScript, ou
+          qui le fait dans une seconde passe, ne voit alors aucune donnée
+          structurée. Vérifié sur le site en ligne avant correction : aucune
+          balise ld+json dans la réponse. */}
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        strategy="afterInteractive"
       />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
