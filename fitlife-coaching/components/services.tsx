@@ -99,7 +99,6 @@ export function Services() {
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-zinc-900 via-zinc-900/40 to-transparent" />
                     
-                    {/* Icône Vectorielle Premium */}
                     <div className="absolute bottom-5 left-6 p-3 bg-zinc-950/80 backdrop-blur-md border border-zinc-800 text-lime-400 transition-transform duration-500 group-hover:-translate-y-2">
                       <service.Icon size={24} strokeWidth={2.5} />
                     </div>
