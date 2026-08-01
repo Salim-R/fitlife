@@ -40,7 +40,13 @@ export function ContactForm() {
 
     setIsSubmitting(true);
 
-    // Simulation d'envoi
+    // Rien n'est envoyé : ce site est une démonstration, sans service de
+    // messagerie ni destinataire. Le délai reproduit l'attente d'un envoi réel
+    // pour que l'état de chargement soit visible.
+    //
+    // La confirmation le dit explicitement. Annoncer « transmis avec succès »
+    // sur un message qui n'existe nulle part laisserait un visiteur attendre
+    // une réponse qui ne viendra jamais.
     await new Promise(r => setTimeout(r, 800));
 
     setIsSubmitting(false);
@@ -169,7 +175,7 @@ export function ContactForm() {
                     ) : isSubmitted ? (
                       <span className="flex items-center justify-center">
                         <Check className="mr-3 h-5 w-5" />
-                        Dossier Reçu
+                        Formulaire validé
                       </span>
                     ) : (
                       <span className="flex items-center justify-center">
@@ -179,8 +185,18 @@ export function ContactForm() {
                     )}
                   </Button>
 
-                  <p ref={liveRef} tabIndex={-1} aria-live="polite" className="sr-only">
-                    {isSubmitted ? 'Votre dossier a été transmis avec succès.' : ''}
+                  {/* Le message est annoncé aux lecteurs d&rsquo;écran et affiché à
+                      l&rsquo;écran : un visiteur voyant doit savoir lui aussi que ce
+                      formulaire ne transmet rien. */}
+                  <p
+                    ref={liveRef}
+                    tabIndex={-1}
+                    aria-live="polite"
+                    className="text-xs leading-relaxed text-zinc-500"
+                  >
+                    {isSubmitted
+                      ? "Formulaire validé. Ce site est une démonstration : votre message n'a pas été envoyé et aucune donnée n'a été conservée."
+                      : ''}
                   </p>
                 </form>
               </div>

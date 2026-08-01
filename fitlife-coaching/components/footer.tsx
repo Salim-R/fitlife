@@ -45,10 +45,14 @@ export function Footer() {
           {/* Mention de l'auteur */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <p>© {new Date().getFullYear()} FitLife Coaching. Tous droits réservés.</p>
+            <p className="max-w-md text-zinc-500">
+              Démonstration : le nom, les coachs, les témoignages et les chiffres
+              présentés sont fictifs et ne correspondent à aucune entreprise réelle.
+            </p>
             <p className="flex items-center gap-1">
               Architecture & Design par{" "}
               <a 
-                href="https://salimportfolio.com" 
+                href="https://www.salimrhamoumi.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-zinc-400 hover:text-lime-400 transition-colors inline-flex items-center"
