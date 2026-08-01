@@ -15,7 +15,8 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock scroll when mobile menu is open
+  // Le defilement de la page est bloque tant que le menu couvre l'ecran :
+  // sans cela, le fond defile derriere le panneau ouvert.
   useEffect(() => {
     document.body.classList.toggle("overflow-hidden", isMenuOpen);
     return () => document.body.classList.remove("overflow-hidden");
@@ -99,8 +100,14 @@ export function Header() {
             </div>
           </div>
 
+          {/* `inert` quand le menu est ferme : replier le panneau par une hauteur
+              nulle et `overflow-hidden` le masque a l'oeil, mais ses liens
+              restent dans l'ordre de tabulation. Sur grand ecran, ou ce menu
+              n'existe pas, un utilisateur au clavier traversait donc cinq liens
+              invisibles avant d'atteindre le contenu. */}
           <m.div
             id="mobile-menu"
+            inert={!isMenuOpen}
             initial={false}
             animate={{ height: isMenuOpen ? "100vh" : 0, opacity: isMenuOpen ? 1 : 0 }}
             className="overflow-hidden bg-zinc-950 md:hidden absolute top-full left-0 w-full"

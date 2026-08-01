@@ -41,7 +41,6 @@ export function Hero() {
             </span>
           </m.div>
 
-          {/* Titre inchangé (Déjà parfait) */}
           <m.h1
             className="max-w-4xl font-heading text-5xl font-black uppercase tracking-tighter text-white sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95]"
             initial={reduce ? undefined : { opacity: 0, y: 20 }}
