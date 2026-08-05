@@ -19,31 +19,36 @@ const montserrat = Montserrat({
   preload: true 
 });
 
+const SITE = 'https://fitlife-coaching.vercel.app';
+
 export const metadata: Metadata = {
-  title: 'FitLife | L\'Élite du Coaching Digital',
+  metadataBase: new URL(SITE),
+  title: 'FitLife · Démonstration de site pour un coach sportif',
   description:
-    'Ne vous entraînez plus au hasard. Programmes millimétrés et coaching premium pour des résultats implacables.',
+    'Site de démonstration : présentation d\'une offre de coaching, méthode, profils concernés et prise de contact. Marque, coachs, témoignages et chiffres fictifs.',
   keywords:
-    ['coaching premium', 'transformation physique', 'fitness', 'digital coaching', 'performance', 'musculation haute intensité'],
-  authors: [{ name: 'FitLife Elite' }],
+    ['coaching sportif', 'site vitrine', 'démonstration', 'Next.js', 'transformation physique'],
+  authors: [{ name: 'Salim Rhamoumi', url: 'https://www.salimrhamoumi.com' }],
+
+  // La marque, les coachs, les témoignages et les chiffres de cette page sont
+  // inventés. Tant qu'ils le sont, elle n'a rien à faire dans un index de
+  // recherche : elle y côtoierait de vrais coachs sous une identité qui
+  // n'existe pas, et ses résultats affichés se liraient comme des promesses.
+  robots: { index: false, follow: false },
+
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://fitlife-coaching.fr',
-    siteName: 'FitLife Elite',
-    images: [
-      {
-        url: 'https://fitlife-coaching.fr/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'FitLife - L\'Élite du Coaching Digital',
-      },
-    ],
+    // L'adresse déclarée était `fitlife-coaching.fr`, un domaine qui n'est pas
+    // le nôtre, et l'image de partage y pointait aussi : tout partage du lien
+    // produisait une vignette vide.
+    url: SITE,
+    siteName: 'FitLife',
+    title: 'FitLife · Démonstration de site pour un coach sportif',
+    description: 'Contenus fictifs. Réalisation Salim Rhamoumi, développeur web.',
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@FitLifeElite',
-    creator: '@FitLifeElite',
   },
 };
 
