@@ -1,5 +1,4 @@
 import type { NextConfig } from "next";
-import path from "node:path";
 
 const nextConfig: NextConfig = {
   // L'en-tête X-Powered-By annonce la technologie du serveur : le retirer
@@ -16,10 +15,16 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
   },
 
-  // Le dépôt contient le client dans un sous-dossier. Sans cette racine
-  // explicite, Next remonte trop haut pour tracer les fichiers et embarque
-  // des dépendances qui ne le concernent pas.
-  outputFileTracingRoot: path.resolve(__dirname),
+  // `outputFileTracingRoot` a été retiré d'ici. Il déclarait explicitement ce
+  // dossier comme racine de traçage, ce que Next déduit déjà seul puisque le
+  // package-lock.json s'y trouve : la ligne ne faisait que répéter le défaut.
+  //
+  // Et elle cassait le déploiement. Vercel est réglé sur Root Directory =
+  // fitlife-coaching avec « include files outside the root directory » activé :
+  // dans ce cas /vercel/path0 désigne la racine du dépôt, pas l'application.
+  // Le chemin absolu déclaré ici décalait d'un niveau le calcul de
+  // l'emplacement de sortie, et le build échouait sur
+  // « ENOENT: /vercel/path0/.next/package.json », un cran trop haut.
 
   async headers() {
     return [
