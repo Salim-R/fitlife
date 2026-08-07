@@ -40,16 +40,15 @@ export function OurTeam() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <LazyMotion features={loadFeatures}>
-          <div className="flex flex-col items-center text-center mb-16 sm:mb-24">
-            <m.div 
-              className="mb-4 inline-flex items-center gap-2"
+          <div className="mb-16 flex flex-col items-start text-left sm:mb-24">
+            <m.div
+              className="mb-5 inline-flex items-baseline gap-3"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              <div className="h-px w-8 bg-lime-400" />
-              <span className="text-lime-400 font-bold tracking-[0.2em] uppercase text-xs">Le Hub</span>
-              <div className="h-px w-8 bg-lime-400" />
+              <span className="border-r border-zinc-800 pr-3 text-xs font-black tracking-[0.1em] text-lime-400">03</span>
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">Le Hub</span>
             </m.div>
 
             <m.h2
@@ -62,6 +61,8 @@ export function OurTeam() {
             >
               Les Experts de votre <span className="text-zinc-600">Progression</span>
             </m.h2>
+
+            <div className="mt-7 h-0.5 w-14 bg-lime-400" />
           </div>
 
           <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

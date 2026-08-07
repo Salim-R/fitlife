@@ -66,10 +66,21 @@ export function Hero() {
             animate={reduce ? undefined : { opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25 }}
           >
+            {/* Initiales des trois études de cas de la section témoignages : trois
+                pastilles de couleur unie se lisaient comme des images manquantes. */}
             <div className="flex -space-x-3">
-              <div className="h-10 w-10 rounded-full border-2 border-zinc-950 bg-zinc-800" />
-              <div className="h-10 w-10 rounded-full border-2 border-zinc-950 bg-zinc-700" />
-              <div className="h-10 w-10 rounded-full border-2 border-zinc-950 bg-lime-900" />
+              {['MV', 'ST', 'JM'].map((initiales, i) => (
+                <div
+                  key={initiales}
+                  className={`flex h-10 w-10 items-center justify-center rounded-full border-2 border-zinc-950 text-[11px] font-black tracking-tight ${
+                    i === 2
+                      ? 'bg-lime-400/15 text-lime-400 ring-1 ring-inset ring-lime-400/30'
+                      : 'bg-zinc-800 text-zinc-300'
+                  }`}
+                >
+                  {initiales}
+                </div>
+              ))}
             </div>
             <div className="flex flex-col">
               <div className="flex gap-1 text-lime-400">

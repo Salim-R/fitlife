@@ -49,16 +49,17 @@ export function WhyChooseUs() {
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 z-10">
         
-        <div className="flex flex-col items-center text-center">
-          <div className="mb-4 inline-flex items-center gap-2">
-            <div className="h-px w-8 bg-lime-400" />
-            <span className="text-lime-400 font-bold tracking-[0.2em] uppercase text-xs">Notre Philosophie</span>
-            <div className="h-px w-8 bg-lime-400" />
+        <div className="flex flex-col items-start text-left">
+          <div className="mb-5 inline-flex items-baseline gap-3">
+            <span className="border-r border-zinc-800 pr-3 text-xs font-black tracking-[0.1em] text-lime-400">01</span>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">Notre Philosophie</span>
           </div>
 
           <h2 id={`${uid}-title`} className="text-4xl font-heading font-black uppercase tracking-tighter text-white sm:text-5xl md:text-6xl">
             Le Standard <span className="text-zinc-600">D&rsquo;Excellence</span>
           </h2>
+
+          <div className="mt-7 h-0.5 w-14 bg-lime-400" />
         </div>
 
         <LazyMotion features={loadFeatures}>

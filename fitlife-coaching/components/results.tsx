@@ -45,12 +45,17 @@ export function Results() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="mb-16 text-center sm:mb-24 flex flex-col items-center"
+            className="mb-16 flex flex-col items-start text-left sm:mb-24"
           >
-            <div className="mb-4 inline-flex items-center gap-2">
-              <div className="h-px w-8 bg-lime-400" />
-              <span className="text-lime-400 font-bold tracking-[0.2em] uppercase text-xs">La Preuve</span>
-              <div className="h-px w-8 bg-lime-400" />
+            {/* Numéro plutôt que les deux traits, et alignement à gauche : sept sections
+                partageaient le même en-tête centré, plus rien ne les distinguait. */}
+            <div className="mb-5 inline-flex items-baseline gap-3">
+              <span className="border-r border-zinc-800 pr-3 text-xs font-black tracking-[0.1em] text-lime-400">
+                04
+              </span>
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">
+                La Preuve
+              </span>
             </div>
 
             <h2
@@ -59,9 +64,11 @@ export function Results() {
             >
               Les Chiffres Ne <span className="text-zinc-600">Mentent Pas</span>
             </h2>
-            <p className="mt-6 mx-auto max-w-2xl text-lg text-zinc-400 font-medium">
+            <p className="mt-6 max-w-2xl text-lg text-zinc-400 font-medium">
               Une méthodologie prouvée, testée et affinée. Voici la réalité mathématique derrière les transformations de mes athlètes.
             </p>
+
+            <div className="mt-7 h-0.5 w-14 bg-lime-400" />
           </m.div>
 
           <dl className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

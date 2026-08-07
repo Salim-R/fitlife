@@ -34,24 +34,25 @@ const EXPERTISES = [
 ] as const;
 
 export function Services() {
+  // Fond très légèrement décalé, une section sur deux : sans cette respiration,
+  // les sept blocs s'enchaînent sur le même noir et la page paraît uniforme.
   return (
-    <section id="services" className="bg-zinc-950 py-24 sm:py-32 relative overflow-hidden" aria-labelledby="services-title">
+    <section id="services" className="bg-zinc-900/20 py-24 sm:py-32 relative overflow-hidden" aria-labelledby="services-title">
       
       {/* Ligne de séparation subtile en haut */}
       <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-zinc-800 to-transparent" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <LazyMotion features={loadFeatures}>
-          <div className="flex flex-col items-center text-center mb-16 sm:mb-24">
-            <m.div 
-              className="mb-4 inline-flex items-center gap-2"
+          <div className="mb-16 flex flex-col items-start text-left sm:mb-24">
+            <m.div
+              className="mb-5 inline-flex items-baseline gap-3"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              <div className="h-px w-8 bg-lime-400" />
-              <span className="text-lime-400 font-bold tracking-[0.2em] uppercase text-xs">Nos Protocoles</span>
-              <div className="h-px w-8 bg-lime-400" />
+              <span className="border-r border-zinc-800 pr-3 text-xs font-black tracking-[0.1em] text-lime-400">02</span>
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">Nos Protocoles</span>
             </m.div>
 
             <m.h2
@@ -74,6 +75,8 @@ export function Services() {
             >
               Chaque aspect de votre progression est monitoré, calculé et optimisé. Pas de place pour l&rsquo;improvisation ou le hasard.
             </m.p>
+
+            <div className="mt-7 h-0.5 w-14 bg-lime-400" />
           </div>
 
           <ul className="grid gap-6 md:grid-cols-3" role="list">

@@ -46,7 +46,7 @@ export function FAQ() {
   );
 
   return (
-    <section id="faq" className="bg-zinc-950 py-24 sm:py-32 relative overflow-hidden">
+    <section id="faq" className="bg-zinc-900/20 py-24 sm:py-32 relative overflow-hidden">
       {/* Balise rendue directement, et non via next/script : la stratégie
           « afterInteractive » injecte le script après l'hydratation, donc
           hors du HTML servi. Un robot qui n'exécute pas le JavaScript, ou
@@ -65,17 +65,18 @@ export function FAQ() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-16"
+            className="mb-16 flex flex-col items-start text-left"
           >
-            <div className="mb-4 inline-flex items-center gap-2">
-              <div className="h-px w-8 bg-lime-400" />
-              <span className="text-lime-400 font-bold tracking-[0.2em] uppercase text-xs">Clarification</span>
-              <div className="h-px w-8 bg-lime-400" />
+            <div className="mb-5 inline-flex items-baseline gap-3">
+              <span className="border-r border-zinc-800 pr-3 text-xs font-black tracking-[0.1em] text-lime-400">06</span>
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">Clarification</span>
             </div>
 
             <h2 className="text-4xl font-heading font-black uppercase tracking-tighter text-white sm:text-5xl md:text-6xl">
               Questions <span className="text-zinc-600">Fréquentes</span>
             </h2>
+
+            <div className="mt-7 h-0.5 w-14 bg-lime-400" />
           </m.div>
 
           <div className="mx-auto mt-12 w-full max-w-3xl">

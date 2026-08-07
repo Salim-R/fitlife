@@ -75,9 +75,9 @@ export function ContactForm() {
               transition={{ duration: 0.5 }}
               className="lg:w-5/12 flex flex-col justify-center"
             >
-              <div className="mb-4 inline-flex items-center gap-2">
-                <div className="h-px w-8 bg-lime-400" />
-                <span className="text-lime-400 font-bold tracking-[0.2em] uppercase text-xs">Candidature</span>
+              <div className="mb-5 inline-flex items-baseline gap-3">
+                <span className="border-r border-zinc-800 pr-3 text-xs font-black tracking-[0.1em] text-lime-400">07</span>
+                <span className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">Candidature</span>
               </div>
 
               <h2 className="mb-6 text-4xl font-heading font-black uppercase tracking-tighter text-white sm:text-5xl md:text-6xl">

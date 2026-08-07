@@ -49,16 +49,17 @@ export function Testimonials() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
         
-        <div className="flex flex-col items-center text-center">
-          <div className="mb-4 inline-flex items-center gap-2">
-            <div className="h-px w-8 bg-lime-400" />
-            <span className="text-lime-400 font-bold tracking-[0.2em] uppercase text-xs">Études de Cas</span>
-            <div className="h-px w-8 bg-lime-400" />
+        <div className="flex flex-col items-start text-left">
+          <div className="mb-5 inline-flex items-baseline gap-3">
+            <span className="border-r border-zinc-800 pr-3 text-xs font-black tracking-[0.1em] text-lime-400">05</span>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">Études de Cas</span>
           </div>
 
           <h2 id={`${uid}-title`} className="text-4xl font-heading font-black uppercase tracking-tighter text-white sm:text-5xl md:text-6xl">
             Ils ont franchi <span className="text-zinc-600">Le Cap</span>
           </h2>
+
+          <div className="mt-7 h-0.5 w-14 bg-lime-400" />
         </div>
 
         <LazyMotion features={loadFeatures}>
@@ -95,7 +96,9 @@ export function Testimonials() {
                     <Star fill="currentColor" size={20} />
                   </div>
 
-                  <div className="mx-auto min-h-32 flex items-center justify-center">
+                  {/* Hauteur réservée pour la citation la plus longue : sans elle,
+                      la carte change de taille à chaque changement de témoignage. */}
+                  <div className="mx-auto flex min-h-60 items-center justify-center sm:min-h-40">
                     <p className="text-xl sm:text-2xl font-medium text-white leading-relaxed">
                       &ldquo;{t.quote}&rdquo;
                     </p>
